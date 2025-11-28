@@ -15,6 +15,7 @@
     "match": "^1.2.11",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-google-button": "^0.8.0",
     "react-router-dom": "^7.9.6",
     "sass": "^1.94.2",
     "sort-by": "^1.2.0"

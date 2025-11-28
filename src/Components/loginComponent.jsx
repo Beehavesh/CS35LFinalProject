@@ -3,6 +3,7 @@ import { useState } from 'react';
 import linkedoutlogo from '../Assets/linkedoutlogo2.png';
 import { LoginAPI } from '../api/AuthAPI';
 import { RegisterAPI } from '../api/AuthAPI';
+import GoogleButton from 'react-google-button';
 import '../Sass/LoginComponent.scss';
 
 export default function LoginComponent() {
@@ -19,25 +20,40 @@ export default function LoginComponent() {
     return (
         <div className = "login-wrapper ">
             <img src = {linkedoutlogo} className = "linkedoutlogo"/>
-            <h1 className="heading1">Sign in</h1>
-            <p className="subheading1">Welcome back! Please enter your details.</p>
-            <div className ="auth-inputs">
-                <input onChange={(event) => {
-                    setCredentials({ ...credentials, email: event.target.value });
-                }} 
-                className='common-input' 
-                placeholder='Enter your email' 
-                />
-                <input onChange={(event) => {
-                    setCredentials({ ...credentials, password: event.target.value });
-                }} 
-                className='common-input' 
-                placeholder='Enter your password' 
-                />
+            <div className = "login-divider">
+                <h1 className="heading1">Sign in</h1>
+                <p className="subheading1">Welcome back! Please enter your details.</p>
+                <div className ="auth-inputs">
+                    <input onChange={(event) => {
+                        setCredentials({ ...credentials, email: event.target.value });
+                    }} 
+                    className='common-input' 
+                    type='email'
+                    placeholder='Enter your email' 
+                    />
+                    <input onChange={(event) => {
+                        setCredentials({ ...credentials, password: event.target.value });
+                    }} 
+                    className='common-input' 
+                    type='password'
+                    placeholder='Enter your password' 
+                    />
+                </div>
+                    <button onClick={login} className='login-button'>
+                        Log in
+                </button>
             </div>
-            <button onClick={login} className='login-button'>
-                Log in
-            </button>
+            <hr class="line-divider" data-content="or" />
+            <div className='google-button-wrapper'>
+            <GoogleButton
+                className="google-button"
+                type="light" 
+                onClick={() => {
+                    console.log("Google sign-in clicked");
+                }}
+            />
+            <p className="signup-text">Don't have an account? <a href="#" className="signup-link">Sign up</a></p>
+            </div>
         </div>
     );
 }
