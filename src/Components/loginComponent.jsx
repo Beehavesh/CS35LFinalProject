@@ -1,21 +1,36 @@
 import React from 'react';
 import { useState } from 'react';
 import linkedoutlogo from '../Assets/linkedoutlogo2.png';
-import { LoginAPI } from '../api/AuthAPI';
-import { RegisterAPI } from '../api/AuthAPI';
+import { LoginAPI, RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
+import { useNavigate } from "react-router-dom";
 import '../Sass/LoginComponent.scss';
+import { toast } from 'react-toastify';
 
 export default function LoginComponent() {
+    const navigate = useNavigate();
     const [credentials, setCredentials] = useState({});
     const login = async () => {
         try {
             let res = await LoginAPI(credentials.email, credentials.password);
+            toast.success("Logged in successfully!");
             console.log(res);
         }
         catch (err) {
             console.log(err);
+            toast.error("Login failed. Please check your credentials.");
         }   
+    };
+    const googleSignIn = async () => {
+        try {
+            let res = await GoogleSignInAPI();
+            toast.success("Google Sign-In successful!");
+            console.log(res);
+        }
+        catch (err) {
+            toast.error("Google Sign-In failed.");
+            console.log(err);
+        }
     };
     return (
         <div className = "login-wrapper ">
@@ -48,11 +63,9 @@ export default function LoginComponent() {
             <GoogleButton
                 className="google-button"
                 type="light" 
-                onClick={() => {
-                    console.log("Google sign-in clicked");
-                }}
+                onClick={() => { googleSignIn(); }}
             />
-            <p className="signup-text">Don't have an account? <a href="#" className="signup-link">Sign up</a></p>
+            <p className="signup-text">Don't have an account? <span className="signup-link" onClick={() => navigate("/register")}>Sign up</span></p>
             </div>
         </div>
     );
