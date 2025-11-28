@@ -19,7 +19,8 @@ export default function LoginComponent() {
     return (
         <div className = "login-wrapper ">
             <img src = {linkedoutlogo} className = "linkedoutlogo"/>
-            <h1>Sign in</h1>
+            <h1 className="heading1">Sign in</h1>
+            <p className="subheading1">Welcome back! Please enter your details.</p>
             <div className ="auth-inputs">
                 <input onChange={(event) => {
                     setCredentials({ ...credentials, email: event.target.value });
