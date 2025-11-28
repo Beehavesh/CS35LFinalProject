@@ -1,6 +1,6 @@
 import React from 'react';
-import loginComponent from '../Components/loginComponent';
+import LoginComponent from '../Components/loginComponent.jsx';
 
 export default function Login() {
-  return <h1>{loginComponent()}</h1>;
+  return <LoginComponent />;
 }

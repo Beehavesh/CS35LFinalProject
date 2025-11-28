@@ -10,12 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^12.5.0",
+    "firebase": "^9.23.0",
     "localforage": "^1.10.0",
     "match": "^1.2.11",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.6",
+    "sass": "^1.94.2",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
