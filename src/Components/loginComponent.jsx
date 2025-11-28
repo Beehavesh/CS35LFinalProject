@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import linkedoutlogo from '../Assets/linkedoutlogo2.png';
-import { LoginAPI, RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
+import { LoginAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
 import '../Sass/LoginComponent.scss';
@@ -15,6 +15,7 @@ export default function LoginComponent() {
             let res = await LoginAPI(credentials.email, credentials.password);
             toast.success("Logged in successfully!");
             console.log(res);
+            navigate("/home");
         }
         catch (err) {
             console.log(err);
@@ -26,6 +27,7 @@ export default function LoginComponent() {
             let res = await GoogleSignInAPI();
             toast.success("Google Sign-In successful!");
             console.log(res);
+            navigate("/home");
         }
         catch (err) {
             toast.error("Google Sign-In failed.");
