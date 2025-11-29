@@ -17,7 +17,10 @@
 
 .login-wrapper {
     .login-divider {
-        margin-left: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;   
     }
     .heading1 {
     font-size: 4rem;
@@ -60,7 +63,10 @@
 }
 
 .line-divider {
-  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;   
   margin-top: 20px;
   line-height: 1em;
   position: relative;
@@ -97,10 +103,13 @@
 
 .google-button-wrapper {
     margin-top: 20px;
-    margin-left: 200px;
-    width: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
     > * {
-    width: 100% !important;
+    width: 300px !important;
     }
     .signup-text {
         margin-left: 50px;
