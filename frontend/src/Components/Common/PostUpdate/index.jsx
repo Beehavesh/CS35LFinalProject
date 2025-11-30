@@ -29,6 +29,8 @@ export default function PostStatus() {
     const [allPosts, setAllPosts] = useState([]);
     
     const sendStatus = async () => { 
+        const auth = getAuth(); 
+        const token = await auth.currentUser.getIdToken();
                 if (!postStatus.trim()) return;
 
         try {
