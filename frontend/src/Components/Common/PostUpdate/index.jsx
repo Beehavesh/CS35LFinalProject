@@ -1,12 +1,36 @@
 import React, { useState } from 'react';
 import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
+import { getAuth } from "firebase/auth";
 
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
     const [status, setStatus] = useState('');
-    const sendStatus = () => { 
+    const sendStatus = async () => { 
+                if (!status.trim()) return;
 
+        try {
+            const auth = getAuth();
+            const token = await auth.currentUser.getIdToken();
+            const response = await fetch("http://localhost:5001/api/posts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    text: status,
+                    userId: "TEMP_USER_ID" // you will replace this with Firebase auth UID
+                })
+            });
+
+            if (!response.ok) throw new Error("Failed to post");
+
+            setStatus("");
+            setModalOpen(false);
+        } catch (err) {
+            console.error(err);
+        }
     };
     return (
         <div className="post-status-container">
