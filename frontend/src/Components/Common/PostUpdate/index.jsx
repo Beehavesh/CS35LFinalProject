@@ -8,7 +8,7 @@ const getPosts = async (setAllPosts) => {
     try {
         const auth = getAuth(); 
         const token = await auth.currentUser.getIdToken();
-        const response = await fetch("http://localhost:5001/api/posts", {
+        const response = await fetch("https://cs35lfinalproject.onrender.com/api/posts", {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
