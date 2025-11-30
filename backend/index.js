@@ -17,8 +17,7 @@ admin.initializeApp({
 });
 
 // Connect to MongoDB
-const MONGO_URI = process.env.MONGO_URI || 
-  "mongodb+srv://bhaveshapathak_db_user:TROWXzkIjDrtw28P@cluster0.s2bpv8v.mongodb.net/?appName=Cluster0";
+const MONGO_URI = process.env.MONGO_URI 
 mongoose.connect(MONGO_URI, {
   dbName: "linkedout",
 });
