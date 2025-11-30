@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
 import { getAuth } from "firebase/auth";
+import { toast } from 'react-toastify';
 
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -20,16 +21,16 @@ export default function PostStatus() {
                 },
                 body: JSON.stringify({
                     text: status,
-                    userId: "TEMP_USER_ID" // you will replace this with Firebase auth UID
                 })
             });
 
             if (!response.ok) throw new Error("Failed to post");
-
+                toast.success("Posted!");
             setStatus("");
             setModalOpen(false);
         } catch (err) {
-            console.error(err);
+            console.log(err);
+            toast.error("Failed to create post.");
         }
     };
     return (
