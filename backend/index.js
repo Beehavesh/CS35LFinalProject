@@ -2,14 +2,13 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import admin from "firebase-admin";
-import postRoutes from "./Routes/posts.js";
+import Post from "./models/Post.js";
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/api", postRoutes);
 
 // Initialize Firebase admin
 admin.initializeApp({
@@ -37,6 +36,11 @@ async function verifyToken(req, res, next) {
   }
 }
 
+// Render backend
+app.get("/", (req, res) => {
+  res.send("Backend running");
+});
+
 // Create a new post
 app.post("/api/posts", verifyToken, async (req, res) => {
   const post = await Post.create({
@@ -53,4 +57,4 @@ app.get("/api/posts", verifyToken, async (req, res) => {
   res.json(posts);
 });
 
-app.listen(5001, () => console.log("Server running on http://localhost:5001"));
+app.listen(process.env.PORT || 5001, () => console.log("Server running"));
