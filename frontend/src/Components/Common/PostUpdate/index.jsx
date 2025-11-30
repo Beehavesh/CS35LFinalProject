@@ -34,7 +34,7 @@ export default function PostStatus() {
                 if (!postStatus.trim()) return;
 
         try {
-            const response = await fetch("http://localhost:5001/api/posts", {
+            const response = await fetch("https://cs35lfinalproject.onrender.com", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
