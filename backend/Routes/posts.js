@@ -1,9 +1,8 @@
 import express from "express";
-import Post from "./models/Post.js"; // create this model
+import Post from "../models/Post.js"; 
 
 const router = express.Router();
 
-// Create post
 router.post("/post", async (req, res) => {
     try {
         const { text, userId } = req.body;
