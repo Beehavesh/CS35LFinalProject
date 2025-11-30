@@ -34,7 +34,7 @@ export default function PostStatus() {
                 if (!postStatus.trim()) return;
 
         try {
-            const response = await fetch("http://localhost:5001/api/posts", {
+            const response = await fetch("http://192.168.1.111:5001/api/posts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
