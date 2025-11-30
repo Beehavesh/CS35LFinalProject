@@ -5,12 +5,11 @@ import admin from "firebase-admin";
 import { readFileSync } from "fs";
 import postRoutes from "./Routes/posts.js";
 
-app.use("/api", postRoutes);
-
 const serviceAccount = JSON.parse(
   readFileSync("./serviceAccountKey.json", "utf8")
 );
 const app = express();
+app.use("/api", postRoutes);
 app.use(cors());
 app.use(express.json());
 
@@ -20,7 +19,9 @@ admin.initializeApp({
 });
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/linkedout", {
+const MONGO_URI = process.env.MONGO_URI || 
+  "mongodb+srv://bhaveshapathak_db_user:TROWXzkIjDrtw28P@cluster0.s2bpv8v.mongodb.net/?appName=Cluster0";
+mongoose.connect(MONGO_URI, {
   dbName: "linkedout",
 });
 
