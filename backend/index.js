@@ -2,15 +2,14 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import admin from "firebase-admin";
-import { readFileSync } from "fs";
 import postRoutes from "./Routes/posts.js";
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 const app = express();
-app.use("/api", postRoutes);
 app.use(cors());
 app.use(express.json());
+app.use("/api", postRoutes);
 
 // Initialize Firebase admin
 admin.initializeApp({
@@ -23,15 +22,6 @@ const MONGO_URI = process.env.MONGO_URI ||
 mongoose.connect(MONGO_URI, {
   dbName: "linkedout",
 });
-
-// Post model
-const PostSchema = new mongoose.Schema({
-  userId: String,
-  text: String,
-  timestamp: Number
-});
-
-const Post = mongoose.model("Post", PostSchema);
 
 // Middleware to verify Firebase token
 async function verifyToken(req, res, next) {
