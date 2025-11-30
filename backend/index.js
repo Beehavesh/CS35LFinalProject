@@ -7,10 +7,6 @@ import postRoutes from "./Routes/posts.js";
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-});
-
 const app = express();
 app.use("/api", postRoutes);
 app.use(cors());
