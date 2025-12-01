@@ -1,6 +1,7 @@
 import React, { use, useMemo, useState } from 'react';
 import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
+import LikeButton from '../LikeButton/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
 
@@ -74,10 +75,10 @@ export default function PostStatus() {
             return (
                 <div key={post._id} className="post-item">
                     <p>{post.text}</p>
+                    <LikeButton />
                 </div>
             );
-        }
-    )
-    }
-    </div>);
+        })}
+        </div>
+    );
 }
