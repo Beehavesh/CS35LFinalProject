@@ -11,9 +11,11 @@
         align-items: center;
         gap: 15px;
         color: #880000;
+        //880000
     }
     .icon:hover {
         color: #ff0000;
+        //ff0000
     }
 }
 
@@ -22,4 +24,11 @@
     position: absolute;
     right: 20px;
     cursor: pointer;
+}
+.profile-wrapper {
+    position: relative;   /* anchors popup */
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
 }
