@@ -48,6 +48,22 @@
 
 // FONTS - END
 
+.model-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  touch-action: pan-y;
+  z-index: 0; /* behind everything */
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .login-button {
     font-family: 'Silkscreen', sans-serif;
     width: 300px;
@@ -67,6 +83,9 @@
 }
 
 .login-wrapper {
+    z-index: 10;
+    position: relative;
+
     .login-divider {
         display: flex;
         flex-direction: column;
@@ -80,6 +99,7 @@
     .subheading1 {
     margin-top: -45px;
     }
+
 }
 
 .auth-inputs {
@@ -148,8 +168,9 @@
     padding: 0 .5em;
     line-height: 1.5em;
     // this is really the only tricky part, you need to specify the background color of the container element...
-    color: #818078;
+    color: #7800EB;
     background-color: #fcfcfa;
+    border-radius: 50%;
     }
 }
 
