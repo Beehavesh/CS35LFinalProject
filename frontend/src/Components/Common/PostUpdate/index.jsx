@@ -4,6 +4,8 @@ import ModalComponent from '../Modal/index.jsx';
 import LikeButton from '../LikeButton/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
+import getPosts from '../GetPosts/index.jsx';
+
 
 const getPosts = async (setAllPosts) => {
     try {

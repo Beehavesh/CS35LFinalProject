@@ -42,12 +42,20 @@ export default function RegisterComponent() {
                 <p className="subheading1">Welcome! Enter your info to create an account.</p>
                 <div className ="auth-inputs">
                     <input onChange={(event) => {
+                        setCredentials({ ...credentials, name: event.target.value });
+                    }} 
+                    className='common-input' 
+                    type='text'
+                    placeholder='Your Name' 
+                    />
+                    <input onChange={(event) => {
                         setCredentials({ ...credentials, email: event.target.value });
                     }} 
                     className='common-input' 
                     type='email'
                     placeholder='Enter your email' 
                     />
+
                     <input onChange={(event) => {
                         setCredentials({ ...credentials, password: event.target.value });
                     }} 
