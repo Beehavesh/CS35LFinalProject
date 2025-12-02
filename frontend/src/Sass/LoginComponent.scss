@@ -1,9 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+
+// <uniquifier>: Use a unique and descriptive class name
+// FONTS - BEGIN
+
+.silkscreen-regular {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.silkscreen-bold {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.nabla-yellow {
+  font-family: "Nabla", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "EDPT" 100,
+    "EHLT" 12;
+}
+
+.gudea-regular {
+  font-family: "Gudea", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.gudea-bold {
+  font-family: "Gudea", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.gudea-regular-italic {
+  font-family: "Gudea", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+// FONTS - END
+
 .login-button {
-    font-family: papyrus;
+    font-family: 'Silkscreen', sans-serif;
     width: 300px;
     margin-top: 20px;
-    background-color: #00ffff;
-    color: #ff00ff;
+    background-color: #7800EB;
+    color: #F0F0F0;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -12,7 +62,8 @@
 }
 
 .login-button:hover {
-    background-color: #00cccc;
+    background-color: #B0A3EB;
+    color: #4E64EB;
 }
 
 .login-wrapper {
@@ -23,6 +74,7 @@
         align-items: center;   
     }
     .heading1 {
+    font-family: "Silkscreen";
     font-size: 4rem;
     }
     .subheading1 {
@@ -48,10 +100,10 @@
     margin: 10px 0px;
     }
     .common-input:focus {
-    outline: 1px solid #00ffff;
+    outline: 1px solid #7800EB;
     }
     ::placeholder{
-        font-family: papyrus;
+        font-family: gudea;
     }
  }
 
