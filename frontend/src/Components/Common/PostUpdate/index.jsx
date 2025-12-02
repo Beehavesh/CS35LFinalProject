@@ -1,10 +1,9 @@
-import React, { use, useMemo, useState } from 'react';
+import { useState } from 'react';
 import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
 import LikeButton from '../LikeButton/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
-import getPosts from '../GetPosts/index.jsx';
 
 
 
@@ -54,7 +53,6 @@ const createLikes = async (token) => {
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
     const [postStatus, setPostStatus] = useState('');
-    const [allPosts, setAllPosts] = useState([]);
     
     const sendStatus = async () => { 
         const auth = getAuth(); 
@@ -85,10 +83,6 @@ export default function PostStatus() {
         createLikes(token);
     };
 
-    useMemo(() => {
-        getPosts(setAllPosts);
-    }, []);
-
     return (
         <div className="post-status-container">
             <div className="post-status">
@@ -100,6 +94,7 @@ export default function PostStatus() {
                 </button>
             </div>
             <ModalComponent status={postStatus} setStatus={setPostStatus} modalOpen={modalOpen} setModalOpen={setModalOpen} sendStatus={sendStatus}/>
+
         {allPosts.map((post) => {
             return (
                 <div key={post._id} className="post-item">
@@ -110,4 +105,6 @@ export default function PostStatus() {
         })}
         </div>
     );
+    </div>);
+
 }

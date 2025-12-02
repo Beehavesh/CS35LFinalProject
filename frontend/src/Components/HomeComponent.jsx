@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PostStatus from './Common/PostUpdate/index.jsx';
+import GetPosts from './Common/GetPosts/index.jsx';
 import '../Sass/HomeComponent.scss';
 import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
@@ -20,7 +20,7 @@ export default function HomeComponent() {
             const response = await fetch("https://cs35lfinalproject.onrender.com/api/image", {
                 method: "POST",
                 headers: {
-                    "Authorization" : `Bearer ${token}`
+                    "Authorization": `Bearer ${token}`
                 },
                 body: form 
             });
@@ -34,7 +34,7 @@ export default function HomeComponent() {
     };
     return (
         <div>
-            <PostStatus />
+            <GetPosts />
             <input type={"file"} onChange={getImage} />
             <button onClick={sendImage}>Upload</button>
         </div>
