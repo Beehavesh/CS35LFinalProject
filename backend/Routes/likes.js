@@ -9,7 +9,7 @@ router.post("/like", async (req, res) => {
 
         const like = await Like.create({
             postID,
-            //likedUserIDs,
+            likedUserIDs,
         });
 
         res.status(201).json(like);

@@ -1,4 +1,4 @@
-import linkedoutlogo from '../Assets/linkedoutlogo2.png';
+import linkedoutlogo from '../assets/linkedoutlogo2.png';
 import '../Sass/ProfileComponent.scss';
 
 export default function RegisterComponent() {
