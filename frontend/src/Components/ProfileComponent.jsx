@@ -1,4 +1,4 @@
-import linkedoutlogo from '../Assets/linkedoutlogo2.png';
+import linkedoutlogo from '../assets/linkedoutlogo2.png';
 import '../Sass/ProfileComponent.scss';
 import Topbar from '../Components/Common/Topbar/index.jsx';
 
