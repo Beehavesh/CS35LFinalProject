@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import admin from "firebase-admin";
 import Post from "./models/Post.js";
+import Like from "./models/Like.js";
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
@@ -55,6 +56,21 @@ app.post("/api/posts", verifyToken, async (req, res) => {
 app.get("/api/posts", verifyToken, async (req, res) => {
   const posts = await Post.find().sort({ timestamp: -1 });
   res.json(posts);
+});
+
+// Create likes for a post
+app.post("/api/likes", verifyToken, async (req, res) => {
+  const like = await Like.create({
+    postID: req.body.pid,
+    // likedUserIDs: null,
+  });
+  res.json(like);
+});
+
+// Get likes for a post
+app.get("/api/likes", verifyToken, async (req, res) => {
+  const likes = await Like.find();
+  res.json(likes);
 });
 
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
