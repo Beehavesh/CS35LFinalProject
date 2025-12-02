@@ -105,6 +105,5 @@ export default function PostStatus() {
         })}
         </div>
     );
-    </div>);
 
 }
