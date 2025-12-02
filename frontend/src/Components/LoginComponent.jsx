@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import linkedoutlogo from '../Assets/linkedoutlogo2.png';
+import motifv2 from '../Assets/motif-v2.svg';
 import { LoginAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,7 @@ export default function LoginComponent() {
     };
     return (
         <div className = "login-wrapper ">
-            <img src = {linkedoutlogo} className = "linkedoutlogo"/>
+            <img src = {motifv2} className = "linkedoutlogo"/>
             <div className = "login-divider">
                 <h1 className="heading1">Sign in</h1>
                 <p className="subheading1">Welcome back! Please enter your details.</p>
