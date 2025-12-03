@@ -17,7 +17,7 @@ const FormComponent = () => {
     };
 
     const response = await fetch(
-      "https://cs35lfinalproject.onrender.com/api/playlists",
+      "https://cs35lfinalproject.onrender.com/api/playlist",
       {
         method: "POST",
         headers: {
