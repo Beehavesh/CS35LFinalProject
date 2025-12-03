@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import motifv2 from '../Assets/motif-v2.svg';
+import motifv2 from '../assets/motif-v2.svg';
 import { RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
