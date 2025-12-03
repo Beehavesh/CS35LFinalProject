@@ -106,6 +106,28 @@ model-viewer {
 
 // MARQUEE CODE - END
 
+.page-container {
+    display: flex; 
+    height: 100vh; 
+}
+// LEFT/RIGHT SIDE 
+
+.entire-page-container {
+  display: grid; 
+  height: 100vh; 
+  grid-template-columns: 1fr 1fr;
+}
+
+.left-side,
+.right-side {
+  flex: 1; 
+  padding: 15px; // unsure about this
+  display: grid; 
+  place-items: center;
+}
+
+// END 
+
 .login-button {
     font-family: 'Gudea', sans-serif;
     width: 300px;
@@ -124,9 +146,52 @@ model-viewer {
     color: #4E64EB;
 }
 
+.hero-wrapper {
+    z-index: 10; 
+    position: relative; 
+    padding: 2em; 
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; //allow click-through for the 3d model
+
+    .hero-divider {
+        flex-direction:column;
+        position: relative;
+    }
+
+    .heading1 {
+        font-family: "Gudea";
+        font-size: 6rem; 
+        margin: 0; 
+        padding-bottom: 0.5rem;
+        color: #4E64EB;
+        text-shadow: rgba(137,200,234,0.69) 0px 0px 32px;
+        animation: pulse 5s infinite alternate; 
+    }
+
+    h2 {
+        font-size: 3rem; 
+        line-height: 1; 
+        margin: 0; 
+        text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
+    }
+    h3 {
+        font-size: 2rem; 
+        color: #4E64EB;
+    }
+
+    li {
+        font-size: 1.5rem; 
+        line-height: 1.25; 
+        
+    }
+}
+
 .login-wrapper {
     z-index: 10;
     position: relative;
+    justify-content: center; 
+    align-items: center;
 
     .login-divider {
         display: flex;
@@ -136,8 +201,9 @@ model-viewer {
     }
     .heading1 {
     font-family: "Gudea";
-    font-size: 4rem;
+    font-size: 3rem;
     pointer-events: none; 
+    padding-bottom: 1rem;
     text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
 
     }
@@ -175,9 +241,9 @@ model-viewer {
 
 .linkedoutlogo {
     width: 80px;
-    /*position:absolute;
-    top:20px;
-    left:20px;*/
+    position: absolute; 
+    top: 0.5em; 
+    left: 0; 
 }
 
 .line-divider {
@@ -245,6 +311,36 @@ model-viewer {
     }
     .sign-uplink:focus {
         color: #B0A3EB;
+    }
+}
+
+// MEDIA QUERIES
+
+/* On mobile, stack them */
+@media (max-width: 768px) {
+    .entire-page-container {
+        grid-template-columns: 1fr;   /* stack */
+        height: auto;                 /* optional */
+    }
+}
+
+// KEYFRAMES 
+
+@keyframes pulse {
+    0% {
+        transform: scale(1); 
+        opacity: 100%; 
+    }
+
+    50% {
+        transform: scale(1.025);
+        opacity: 70%;
+        color: #B0A3EB; 
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 100%;
     }
 }
 
