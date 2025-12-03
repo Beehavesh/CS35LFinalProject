@@ -5,9 +5,6 @@ import LikeButton from '../LikeButton/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
 
-
-
-
 const getLikes = async (setLikeNumber, setIsLiked) => {
     try {
         const auth = getAuth(); 
@@ -47,8 +44,6 @@ const createLikes = async (token) => {
         console.log(err);
     }  
 }
-
-
 
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);

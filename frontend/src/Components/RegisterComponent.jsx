@@ -1,6 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+<<<<<<< HEAD
 import motifv2 from '../Assets/motif-v2.svg';
+=======
+import linkedoutlogo from '../assets/linkedoutlogo2.png';
+import motifv2 from '../assets/motif-v2.svg';
+>>>>>>> 285d72464cfe8daedb36d37357d9c5bcdb40d939
 import { RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
