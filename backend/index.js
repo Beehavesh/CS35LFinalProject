@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import Like from "./models/Like.js";
-import imageRoutes from "./Routes/images.js";
+import playlistRoutes from "./Routes/playlist.js";
 import likeRoutes from "./Routes/likes.js";
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
@@ -12,7 +12,7 @@ const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/api", imageRoutes);
+app.use("/api", playlistRoutes);
 app.use("/api", likeRoutes);
 
 // Initialize Firebase admin

@@ -3,7 +3,7 @@ import Login from "../Pages/Login.jsx";
 import Register from "../Pages/Register.jsx";
 import HomeLayout from "../layouts/HomeLayout.jsx";
 import Profile from "../Pages/Profile.jsx";
-import Playlist from "../Pages/Playlist.jsx"
+import PlaylistLayout from "../layouts/PlaylistLayout.jsx"
 import Jobpost from "../Pages/Jobpost.jsx"
 import Search from "../Pages/Search.jsx"
 
@@ -27,7 +27,7 @@ export const router = createBrowserRouter(
     },
     { 
         path: "/playlist", 
-        element: <Playlist />, 
+        element: <PlaylistLayout />, 
     },
     { 
         path: "/job-posting", 
