@@ -88,6 +88,21 @@ export default function PostStatus() {
                     Start a Post
                 </button>
             </div>
-            <ModalComponent status={postStatus} setStatus={setPostStatus} modalOpen={modalOpen} setModalOpen={setModalOpen} sendStatus={sendStatus}/>
+            <ModalComponent
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                title="Create a Post"
+                onSubmit={sendStatus}
+                submitLabel="Post"
+                disableSubmit={postStatus.trim().length === 0}
+            >
+                <input
+                    type="text"
+                    placeholder="What's on your mind?"
+                    className="post-input"
+                    onChange={(e) => setPostStatus(e.target.value)}
+                    value={postStatus}
+                />
+            </ModalComponent>
         </div>);
 }
