@@ -239,9 +239,10 @@ model-viewer {
     }
  }
 
-.linkedoutlogo {
+.linkedoutlogo { // change the name eventually
     width: 80px;
     position: absolute; 
+    z-index: 100;
     top: 0.5em; 
     left: 0; 
 }
