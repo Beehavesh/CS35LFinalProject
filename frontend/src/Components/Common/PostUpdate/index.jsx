@@ -94,10 +94,6 @@ export default function PostStatus() {
                 </button>
             </div>
             <ModalComponent status={postStatus} setStatus={setPostStatus} modalOpen={modalOpen} setModalOpen={setModalOpen} sendStatus={sendStatus}/>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2648fce340dfad74d0c0b31c4292bba86c313913
         {allPosts.map((post) => {
             return (
                 <div key={post._id} className="post-item">
@@ -106,11 +102,7 @@ export default function PostStatus() {
                 </div>
             );
         })}
-<<<<<<< HEAD
-        </div>);
-=======
         </div>
     );
 
->>>>>>> 2648fce340dfad74d0c0b31c4292bba86c313913
 }
