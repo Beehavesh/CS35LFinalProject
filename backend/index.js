@@ -51,8 +51,7 @@ app.post("/api/posts", verifyToken, async (req, res) => {
   const post = await Post.create({
     userId: req.user.uid,
     text: req.body.text,
-    timestamp: Date.now(),
-    likedUserIDs: null
+    timestamp: Date.now()
   });
   res.json(post);
 });
