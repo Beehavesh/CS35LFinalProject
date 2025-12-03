@@ -86,6 +86,7 @@ model-viewer {
 
   x-purpletext {
     color: #4E64EB;
+    text-shadow: rgba(137,200,234,0.69) 0px 0px 32px;
 }
 
 }
@@ -106,7 +107,7 @@ model-viewer {
 // MARQUEE CODE - END
 
 .login-button {
-    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Gudea', sans-serif;
     width: 300px;
     margin-top: 20px;
     background-color: #7800EB;
@@ -134,11 +135,15 @@ model-viewer {
         align-items: center;   
     }
     .heading1 {
-    font-family: "Silkscreen";
+    font-family: "Gudea";
     font-size: 4rem;
+    pointer-events: none; 
+    text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
+
     }
     .subheading1 {
     margin-top: -45px;
+    text-shadow: rgba(121,0,235,1) 0px 0px 19px;
     }
 
 }
@@ -227,11 +232,19 @@ model-viewer {
     }
     .signup-text {
         margin-left: 50px;
+        text-shadow: rgba(121,0,235,1) 0px 0px 19px;
+
     }
     .signup-link {
         color: #0000ff;
         text-decoration: underline;
         cursor: pointer;
+    }
+    .signup-link:hover {
+        color: #B0A3EB;
+    }
+    .sign-uplink:focus {
+        color: #B0A3EB;
     }
 }
 

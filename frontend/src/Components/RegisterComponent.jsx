@@ -61,7 +61,7 @@ export default function RegisterComponent() {
         <div className = "login-wrapper ">
             <img src = {motifv2} className = "linkedoutlogo"/>
             <div className = "login-divider">
-                <h1 className="heading1">Sign up</h1>
+                <h1 className="heading1">SIGN UP</h1>
                 <p className="subheading1">Welcome! Enter your info to create an account.</p>
                 <div className ="auth-inputs">
                     <input onChange={(event) => {

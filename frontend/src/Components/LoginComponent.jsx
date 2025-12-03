@@ -61,7 +61,7 @@ export default function LoginComponent() {
         <div className = "login-wrapper">
             <img src = {motifChrome} className = "linkedoutlogo"/>
             <div className = "login-divider">
-                <h1 className="heading1">Sign in</h1>
+                <h1 className="heading1">SIGN IN</h1>
                 <p className="subheading1">Welcome back! Please enter your details.</p>
                 <div className ="auth-inputs">
                     <input onChange={(event) => {
