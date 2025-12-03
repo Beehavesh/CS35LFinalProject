@@ -37,6 +37,11 @@ export default function LoginComponent() {
     };
     return (
         <> 
+
+        <p className="marquee">
+            <span> <x-purpletext> MOTIF </x-purpletext> MADE BY MUSICIANS, FOR MUSICIANS.  <x-purpletext> MOTIF </x-purpletext>  MADE BY MUSICIANS.  <x-purpletext> MOTIF </x-purpletext> MADE BY MUSICIANS, FOR MUSICIANS. <x-purpletext> MOTIF </x-purpletext> MADE BY MUSICIANS, FOR MUSICIANS.  &nbsp;</span>
+        </p>
+
         <div className = "model-viewer">
             <model-viewer
             id="reveal"
@@ -80,7 +85,7 @@ export default function LoginComponent() {
                         Log in
                 </button>
             </div>
-            <hr class="line-divider" data-content="or" />
+            <hr className="line-divider" data-content="or" />
             <div className='google-button-wrapper'>
             <GoogleButton
                 className="google-button"

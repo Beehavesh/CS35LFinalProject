@@ -48,6 +48,8 @@
 
 // FONTS - END
 
+// 3D MODEL-RELATED
+
 .model-viewer {
   position: fixed;
   top: 0;
@@ -63,6 +65,45 @@ model-viewer {
   height: 100%;
   display: block;
 }
+
+// 3D MODEL-RELATED - END 
+
+// MARQUEE CODE 
+
+.marquee {
+    width: 100%; // needs to be here b/c this contains the actual text block
+    margin: 0.5em auto; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    position: absolute;
+}
+
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+
+  x-purpletext {
+    color: #4E64EB;
+}
+
+}
+
+.marquee2 span {
+  animation-delay: 1.0s;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+// MARQUEE CODE - END
 
 .login-button {
     font-family: 'Silkscreen', sans-serif;

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import linkedoutlogo from '../Assets/linkedoutlogo2.png';
 import motifv2 from '../Assets/motif-v2.svg';
+import motifChrome from '../Assets/motif-chrome.svg';
 import { RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
@@ -36,6 +37,27 @@ export default function RegisterComponent() {
         }
     };
     return (
+        <>
+
+                <p className="marquee">
+            <span> <x-purpletext> MOTIF </x-purpletext> MADE BY MUSICIANS, FOR MUSICIANS.  <x-purpletext> MOTIF </x-purpletext>  MADE BY MUSICIANS.  <x-purpletext> MOTIF </x-purpletext> MADE BY MUSICIANS, FOR MUSICIANS. <x-purpletext> MOTIF </x-purpletext> MADE BY MUSICIANS, FOR MUSICIANS.  &nbsp;</span>
+        </p>
+        <div className = "model-viewer">
+                    <model-viewer
+                    id="reveal"
+                    loading="eager"
+                    camera-controls touch-action = "pan-y"
+                    auto-rotate
+                    disable-zoom
+                    disable-pan
+                    poster={motifChrome}
+                    tone-mapping="aces"
+                    src="/motif3dreal.gltf"
+                    environment-image="neutral"
+                    shadow-intensity="1"
+                    alt="3d model of motif logo"
+                    ></model-viewer>
+                </div>
         <div className = "login-wrapper ">
             <img src = {motifv2} className = "linkedoutlogo"/>
             <div className = "login-divider">
@@ -79,5 +101,6 @@ export default function RegisterComponent() {
             <p className="signup-text">Already have an account? <span className="signup-link" onClick={() => navigate("/")}>Sign in</span></p>
             </div>
         </div>
+    </>
     );
 }
