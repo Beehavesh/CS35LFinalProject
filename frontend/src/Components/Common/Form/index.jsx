@@ -74,7 +74,7 @@ const FormComponent = () => {
                   style={{ marginBottom: 16, background: "#fafafa" }}
                 >
                   <Space
-                    direction="vertical"
+                    orientation="vertical"
                     style={{ width: "100%" }}
                   >
                     <Form.Item

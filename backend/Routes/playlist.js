@@ -4,7 +4,7 @@ import Playlist from "../models/Playlist.js";
 const router = express.Router();
 
 // Create a playlist
-router.post("/", async (req, res) => {
+router.post("/playlist", async (req, res) => {
   try {
     const { userId, playlistTitle, songs } = req.body;
 
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 });
 
 // Get playlists for a user
-router.get("/:userId", async (req, res) => {
+router.get("/playlist/:userId", async (req, res) => {
   try {
     const playlists = await Playlist.find({ userId: req.params.userId });
     res.json(playlists);

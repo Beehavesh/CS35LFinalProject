@@ -6,6 +6,10 @@ import ModalComponent from './Common/Modal';
 
 export default function PlaylistComponent() {
     const [modalOpen, setModalOpen] = useState(false);
+    const [playlistTitle, setPlaylistTitle] = useState("");
+    const [songs, setSongs] = useState([
+     { title: "", artist: "", album: "", releaseDate: "", link: "" }
+    ]);
     const handleSubmit = async () => {
     const auth = getAuth();
     const token = await auth.currentUser.getIdToken();
@@ -18,8 +22,8 @@ export default function PlaylistComponent() {
     },
         body: JSON.stringify({
         userId: auth.currentUser.uid,
-        //playlistTitle,
-         //songs
+        playlistTitle,
+         songs
     })
     });
 
