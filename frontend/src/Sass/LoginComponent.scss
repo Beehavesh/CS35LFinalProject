@@ -1,147 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
-
-// <uniquifier>: Use a unique and descriptive class name
-// FONTS - BEGIN
-
-.inria-serif-regular {
-  font-family: "Inria", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.silkscreen-regular {
-  font-family: "Silkscreen", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.silkscreen-bold {
-  font-family: "Silkscreen", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.nabla-yellow {
-  font-family: "Nabla", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "EDPT" 100,
-    "EHLT" 12;
-}
-
-.gudea-regular {
-  font-family: "Gudea", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.gudea-bold {
-  font-family: "Gudea", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.gudea-regular-italic {
-  font-family: "Gudea", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-// FONTS - END
-
-// 3D MODEL-RELATED
-
-.model-viewer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  touch-action: pan-y;
-  z-index: 0; /* behind everything */
-}
-
-model-viewer {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-// 3D MODEL-RELATED - END 
-
-// MARQUEE CODE 
-
-.marquee {
-    width: 100%; // needs to be here b/c this contains the actual text block
-    margin: 0.5em auto; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    position: absolute;
-}
-
-
-.marquee span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 15s linear infinite;
-
-  x-purpletext {
-    color: #4E64EB;
-    text-shadow: rgba(137,200,234,0.69) 0px 0px 32px;
-}
-
-}
-
-.marquee2 span {
-  animation-delay: 1.0s;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-100%, 0);
-  }
-}
-
-// MARQUEE CODE - END
-
-.page-container {
-    display: grid;
-    place-items: center;
-    height: 100vh; 
-}
-// LEFT/RIGHT SIDE 
-
-.entire-page-container {
-  display: grid; 
-  height: 100vh; 
-  grid-template-columns: 1fr 1fr;
-}
-
-.left-side,
-.right-side {
-  flex: 1; 
-  padding: 15px; // unsure about this
-  display: grid; 
-  place-items: center;
-}
-
-// END 
-
 .login-button {
-    font-family: 'Gudea', sans-serif;
+    font-family: papyrus;
     width: 300px;
     margin-top: 20px;
-    background-color: #7800EB;
-    color: #F0F0F0;
+    background-color: #00ffff;
+    color: #ff00ff;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -150,62 +12,10 @@ model-viewer {
 }
 
 .login-button:hover {
-    background-color: #B0A3EB;
-    color: #4E64EB;
-}
-
-.hero-wrapper {
-    z-index: 10; 
-    position: relative; 
-    padding: 2em; 
-    justify-content: center;
-    align-items: center;
-    pointer-events: none; //allow click-through for the 3d model
-    animation: fade-in 2.5s; 
-
-    .hero-divider {
-        flex-direction:column;
-        position: relative;
-    }
-
-    .heading1 {  // to show the name of our brand, MOTIF
-        font-family: "Inria";
-        font-size: 6rem; 
-        margin: 0; 
-        margin-top: 1rem; 
-        padding-bottom: 0.5rem;
-        color: #4E64EB;
-        text-shadow: rgba(137,200,234,0.69) 0px 0px 32px;
-        animation: pulse 5s infinite alternate; 
-    }
-
-    h2 { // first subheading right under title 
-        font-size: 3rem; 
-        line-height: 1; 
-        font-weight: bold; // play with this
-        margin: 0; 
-        text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
-    }
-    h3 {
-        font-size: 2rem; 
-        font-weight: normal;
-        color: #4E64EB;
-    }
-
-    li {
-        font-size: 1.5rem; 
-        line-height: 1.25; 
-        
-    }
+    background-color: #00cccc;
 }
 
 .login-wrapper {
-    z-index: 10;
-    position: relative;
-    justify-content: center; 
-    align-items: center;
-    animation: fade-in 4s; 
-
     .login-divider {
         display: flex;
         flex-direction: column;
@@ -213,18 +23,11 @@ model-viewer {
         align-items: center;   
     }
     .heading1 {
-    font-family: "Gudea";
-    font-size: 3rem;
-    pointer-events: none; 
-    padding-bottom: 1rem;
-    text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
-
+    font-size: 4rem;
     }
     .subheading1 {
     margin-top: -45px;
-    text-shadow: rgba(121,0,235,1) 0px 0px 19px;
     }
-
 }
 
 .auth-inputs {
@@ -245,19 +48,18 @@ model-viewer {
     margin: 10px 0px;
     }
     .common-input:focus {
-    outline: 1px solid #7800EB;
+    outline: 1px solid #00ffff;
     }
     ::placeholder{
-        font-family: gudea;
+        font-family: papyrus;
     }
  }
 
-.linkedoutlogo { // change the name eventually
+.linkedoutlogo {
     width: 80px;
-    position: absolute; 
-    z-index: 100;
-    top: 0.5em; 
-    left: 0; 
+    /*position:absolute;
+    top:20px;
+    left:20px;*/
 }
 
 .line-divider {
@@ -291,12 +93,11 @@ model-viewer {
     display: inline-block;
     color: black;
 
-    padding: 0 0.5em;
+    padding: 0 .5em;
     line-height: 1.5em;
     // this is really the only tricky part, you need to specify the background color of the container element...
-    color: #7800EB;
+    color: #818078;
     background-color: #fcfcfa;
-    border-radius: 50%;
     }
 }
 
@@ -312,60 +113,11 @@ model-viewer {
     }
     .signup-text {
         margin-left: 50px;
-        text-shadow: rgba(121,0,235,1) 0px 0px 19px;
-
     }
     .signup-link {
         color: #0000ff;
         text-decoration: underline;
         cursor: pointer;
     }
-    .signup-link:hover {
-        color: #B0A3EB;
-    }
-    .sign-uplink:focus {
-        color: #B0A3EB;
-    }
-}
-
-// MEDIA QUERIES
-
-/* On mobile, stack them */
-@media (max-width: 768px) {
-    .entire-page-container {
-        grid-template-columns: 1fr;   /* stack */
-        height: auto;                 /* optional */
-    }
-}
-
-// KEYFRAMES 
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 100%; 
-    }
-
-    50% {
-        transform: scale(1.025);
-        opacity: 70%;
-        color: #B0A3EB; 
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 100%;
-    }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  to {
-    opacity: 1; 
-    transform: translateY(0);
-  }
 }
 

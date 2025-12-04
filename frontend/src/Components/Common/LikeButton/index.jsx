@@ -34,7 +34,7 @@ const addLike = async (targetPostID) => {
     const auth = getAuth();
     const token = await auth.currentUser.getIdToken();
 
-    const response = await fetch(`https://cs35lfinalproject.onrender.com/api/likes`, {
+    const response = await fetch("https://cs35lfinalproject.onrender.com/api/likes", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const addLike = async (targetPostID) => {
       },
       body: JSON.stringify({
         postID: targetPostID,
-        userID: "Example user ID",
+        newLikeUserID: "Example user ID",
       })
     });
     if (!response.ok) throw new Error("Failed to like this post");
@@ -57,7 +57,7 @@ export default function LikeButton({ postID }) {
     console.log("like button clicked");
     addLike(postID);
   }
-  // getLikes(postID);
+  //getLikes(postID);
 
   return (
     <div className="like-container" onClick={handleLike}>

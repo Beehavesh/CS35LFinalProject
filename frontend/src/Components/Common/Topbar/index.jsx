@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import './index.scss';
 import linkedoutlogo from '../../../assets/linkedoutlogo2.png';
 import user from "../../../assets/user.png";
-import { FaHome, FaUser, FaItunesNote, FaBriefcase, FaSearch } from "react-icons/fa";
+import { FaHome, FaUsers, FaBriefcase, FaSearch, FaBell } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -18,10 +19,11 @@ export default function Topbar() {
             <img src={linkedoutlogo} alt="LinkedOut Logo" height="50px" style={{ margin: '5px' }} />
             <div className="icons">
                 <FaHome size={40} className="icon" onClick={()=>goToRoute("/home")} />
-                <FaUser size={35} className="icon" onClick={()=>goToRoute("/profile")}/>
-                <FaItunesNote size={40} className="icon" onClick={()=>goToRoute("/playlist")} />
-                <FaBriefcase size={40} className="icon" onClick={()=>goToRoute("/job-posting")}/>
-                <FaSearch size={40} className="icon" onClick={()=>goToRoute("/search")}/>
+                <FaUsers size={40} className="icon" onClick={()=>goToRoute("/profile")}/>
+                <FaBriefcase size={40} className="icon"/>
+                <FaSearch size={40} className="icon"/>
+                <FaMessage size={40} className="icon"/>
+                <FaBell size={40} className="icon"/>
             </div>
 
             <div className="profile-wrapper">
