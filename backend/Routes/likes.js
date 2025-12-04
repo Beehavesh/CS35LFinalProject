@@ -19,7 +19,7 @@ router.post("/like", async (req, res) => {
     }
 });
 
-router.put("/like/:postID", async (req, res) => {
+router.put("/likes/:postID", async (req, res) => {
     try {
         // const { postID, uid } = req.body;
 
