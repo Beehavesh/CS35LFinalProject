@@ -17,7 +17,7 @@ export default function HomeComponent() {
         form.append("image", currentImage);
 
         try {
-            const response = await fetch("https://cs35lfinalproject.onrender.com/api/image", {
+            const response = await fetch("http://localhost:5001/api/auth", {
                 method: "POST",
                 headers: {
                     "Authorization" : `Bearer ${token}`
