@@ -9,6 +9,7 @@ import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import User from "./models/User.js";
 import Like from "./models/Like.js";
+import likeRoutes from "./Routes/likes.js";
 
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
@@ -16,6 +17,7 @@ const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api", likeRoutes);
 
 // Initialize Firebase admin
 
