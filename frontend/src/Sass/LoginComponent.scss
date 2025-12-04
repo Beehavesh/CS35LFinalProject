@@ -48,8 +48,66 @@
 
 // FONTS - END
 
+// 3D MODEL-RELATED
+
+.model-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  touch-action: pan-y;
+  z-index: 0; /* behind everything */
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+// 3D MODEL-RELATED - END 
+
+// MARQUEE CODE 
+
+.marquee {
+    width: 100%; // needs to be here b/c this contains the actual text block
+    margin: 0.5em auto; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    position: absolute;
+}
+
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+
+  x-purpletext {
+    color: #4E64EB;
+    text-shadow: rgba(137,200,234,0.69) 0px 0px 32px;
+}
+
+}
+
+.marquee2 span {
+  animation-delay: 1.0s;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+// MARQUEE CODE - END
+
 .login-button {
-    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Gudea', sans-serif;
     width: 300px;
     margin-top: 20px;
     background-color: #7800EB;
@@ -67,6 +125,9 @@
 }
 
 .login-wrapper {
+    z-index: 10;
+    position: relative;
+
     .login-divider {
         display: flex;
         flex-direction: column;
@@ -74,12 +135,17 @@
         align-items: center;   
     }
     .heading1 {
-    font-family: "Silkscreen";
+    font-family: "Gudea";
     font-size: 4rem;
+    pointer-events: none; 
+    text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
+
     }
     .subheading1 {
     margin-top: -45px;
+    text-shadow: rgba(121,0,235,1) 0px 0px 19px;
     }
+
 }
 
 .auth-inputs {
@@ -148,8 +214,9 @@
     padding: 0 .5em;
     line-height: 1.5em;
     // this is really the only tricky part, you need to specify the background color of the container element...
-    color: #818078;
+    color: #7800EB;
     background-color: #fcfcfa;
+    border-radius: 50%;
     }
 }
 
@@ -165,11 +232,19 @@
     }
     .signup-text {
         margin-left: 50px;
+        text-shadow: rgba(121,0,235,1) 0px 0px 19px;
+
     }
     .signup-link {
         color: #0000ff;
         text-decoration: underline;
         cursor: pointer;
+    }
+    .signup-link:hover {
+        color: #B0A3EB;
+    }
+    .sign-uplink:focus {
+        color: #B0A3EB;
     }
 }
 
