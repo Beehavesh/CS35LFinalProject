@@ -7,6 +7,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import admin from "firebase-admin";
 import Post from "./models/Post.js";
+import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
 import Like from "./models/Like.js";
 
@@ -50,18 +51,19 @@ app.get("/", (req, res) => {
 });
 
 // Create a new post
-app.post("/api/posts", verifyToken, async (req, res) => {
-  const post = await Post.create({
+app.post("/api/jobposts", verifyToken, async (req, res) => {
+  const post = await Jobpost.create({
     userId: req.user.uid,
     text: req.body.text,
+    tags: req.body.tags, // check if it should be req.body or something else
     timestamp: Date.now()
-  });
+  }); 
   res.json(post);
 });
 
 // Get all posts
 app.get("/api/posts", verifyToken, async (req, res) => {
-  const posts = await Post.find().sort({ timestamp: -1 });
+  const posts = await Jobpost.find().sort({ timestamp: -1 });
   res.json(posts);
 });
 

@@ -5,6 +5,11 @@ import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
 import getPosts from '../GetPosts/index.jsx';
 
+const initialJobTags = [
+    { id: 0, genre: 'classical', selected: false},
+    { id: 1, genre: 'rock', selected: false},
+    { id: 2, genre: 'country', selected: false},
+]
 
 
 const createLikes = async (token, postID) => {
@@ -29,11 +34,14 @@ const createLikes = async (token, postID) => {
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
     const [postStatus, setPostStatus] = useState('');
+    const [jobTags, setJobTags] = useState(initialJobTags);
+    const [userJobTags, setUserJobTags] = useState(initialJobTags);
     
     const sendStatus = async () => { 
         const auth = getAuth(); 
         const token = await auth.currentUser.getIdToken();
-                if (!postStatus.trim()) return;
+        
+        if (!postStatus.trim()) return;
 
         try {
             const response = await fetch("https://cs35lfinalproject.onrender.com/api/posts", {
@@ -44,15 +52,19 @@ export default function PostStatus() {
                 },
                 body: JSON.stringify({
                     text: postStatus,
+                    tags: jobTags, //this should be set upon submit
                 })
             });
             if (!response.ok) throw new Error("Failed to post");
             toast.success("Posted!");
-            setPostStatus("");
+
+            setPostStatus(""); // MAY be unnecessary
             setModalOpen(false);
 
             const data = await response.json();
+            console.log(data);
             const newPostId = data._id; 
+            
 
             // Create likes for the post
             createLikes(token, String(newPostId));
@@ -89,6 +101,35 @@ export default function PostStatus() {
                     onChange={(e) => setPostStatus(e.target.value)}
                     value={postStatus}
                 />
+
+                <h1>Music Taste Tags</h1>
+                <ul>
+
+                {userJobTags.map(userJobTag => (
+                    <li key={userJobTag.id}>
+                        {userJobTag.genre}
+                    </li>
+                ))}
+
+                </ul>
+
+                <ul>
+                {jobTags.map(jobTag => (
+                    <li key={jobTag.id}>
+                        {jobTag.genre}{' '}
+                        <button onClick={() => {
+                        setUserJobTags(userJobTags.filter(a => //important: set the USER JOB TAG ARRAY, NOT the rendered one.
+                            a.id !== jobTag.id
+                            )
+                        );
+                        }}>
+                        Remove 
+                        </button> 
+                    </li>
+                ))}
+                </ul>
+
+            
             </ModalComponent>
         </div>);
 }
