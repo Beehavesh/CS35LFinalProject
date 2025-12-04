@@ -4,7 +4,7 @@ import User from "../models/User.js";
 const router = express.Router();
 
 
-app.post("/api/auth", async (req, res) => {
+app.post("/", async (req, res) => {
     try{
         const{userId, email, username, photoUrl} = req.body;
         if(!userId || !email){
