@@ -78,15 +78,17 @@ app.get("/api/likes", verifyToken, async (req, res) => {
 });
 
 // Like a post
-app.put("/api/likes/:postID/add_like", verifyToken, async (req, res) => {
+app.put("/api/likes/:postID", verifyToken, async (req, res) => {
   console.log("Liking a post");
-  
+
+  newLikeUserID = req.body.userID;
+  pID = req.body.postID;
 
   if (!newLikeUserID) return res.status(401).json({ error: "Invalid user ID while trying to like" });
 
   try {
     const updatedLikes = await Like.findOneAndUpdate(
-      { postID: postID }, // Filter
+      { postID: pID }, // Filter
       { $push: { likedUserIDs: newLikeUserID } }, // Update
       { new: true } // Option: Return the updated document instead of the old one
     );
@@ -95,10 +97,7 @@ app.put("/api/likes/:postID/add_like", verifyToken, async (req, res) => {
       return res.status(404).json({ error: 'Posts not found while trying to like' });
     }
 
-    res.json({
-      message: 'Like added successfully',
-      likes: updatedLikes
-    });
+    res.json({likes: updatedLikes});
 
   } catch (error) {
     console.error(error);
