@@ -35,7 +35,7 @@ const addLike = async (targetPostID) => {
     const token = await auth.currentUser.getIdToken();
 
     const response = await fetch(`https://cs35lfinalproject.onrender.com/api/likes`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
