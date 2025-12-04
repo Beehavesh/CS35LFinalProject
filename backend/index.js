@@ -5,13 +5,13 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-//import admin from "firebase-admin";
+import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import imageRoutes from "./Routes/images.js";
 import User from "./models/User.js";
 
 
-//const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 const app = express();
 app.use(cors());
@@ -19,11 +19,10 @@ app.use(express.json());
 app.use("/api", imageRoutes);
 
 // Initialize Firebase admin
-/*
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-*/
 
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI 
@@ -32,7 +31,7 @@ mongoose.connect(MONGO_URI, {
 });
 
 // Middleware to verify Firebase token
-/*
+
 async function verifyToken(req, res, next) {
   const token = req.headers.authorization?.split(" ")[1];
 
@@ -44,16 +43,7 @@ async function verifyToken(req, res, next) {
     res.status(401).json({ error: "Invalid token" });
   }
 }
-  */
 
-function verifyToken(req,res,next){
-  const uid = req.headers["x-user-id"];
-  if(!uid){
-    return res.status(401).json({error: "Missing x-user-id header"});
-  }
-  req.user = {uid};
-  next();
-}
 
 // Render backend
 app.get("/", (req, res) => {
@@ -109,6 +99,5 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
 
 });
 
-app.listen(5001, () => console.log("Server running on 5001"));
-//app.listen(process.env.PORT || 5001, () => console.log("Server running"));
+app.listen(process.env.PORT || 5001, () => console.log("Server running"));
 
