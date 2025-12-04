@@ -8,9 +8,6 @@ import getPosts from '../GetPosts/index.jsx';
 
 
 
-
-
-
 const createLikes = async (token, postID) => {
     // create likes for the post
     try {
@@ -29,7 +26,6 @@ const createLikes = async (token, postID) => {
         console.log(err);
     }  
 }
-
 
 
 export default function PostStatus() {
@@ -58,7 +54,6 @@ export default function PostStatus() {
             setPostStatus("");
             setModalOpen(false);
 
-            // Thanks Gemini for providing the code below
             const data = await response.json();
             const newPostId = data._id; 
             console.log("Newly created ID:", newPostId);

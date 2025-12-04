@@ -105,8 +105,6 @@ app.put("/api/likes/:postID/add_like", verifyToken, async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 
-
-
 });
 
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
