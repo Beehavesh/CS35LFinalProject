@@ -19,4 +19,22 @@ router.post("/like", async (req, res) => {
     }
 });
 
+router.put("/like/:postID", async (req, res) => {
+    try {
+        // const { postID, uid } = req.body;
+
+        const updatedLikes = await Like.findOneAndReplace(
+            { postID: req.body.postID },
+            { $push: { likedUserIDs: req.body.userID } },
+            { new: true }
+        );
+
+        res.json({likes: updatedLikes});
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to like" });
+    }
+});
+
 export default router;

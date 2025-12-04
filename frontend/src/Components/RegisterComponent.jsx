@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import motifv2 from '../Assets/motif-v2.svg';
+import motifChrome from '../Assets/motif-chrome.svg';
 import { RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
@@ -37,12 +38,13 @@ export default function RegisterComponent() {
    const saveUserDataDB = async(email, username, photoUrl) =>{
     const auth = getAuth();
     const userId = auth.currentUser.uid; //this is the firebase uid
+    const token = await auth.currentUser.getIdToken();
 
     await fetch("https://cs35lfinalproject.onrender.com/api/auth",{
         method: "POST",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            "x-user-id": userId,
         },
         body: JSON.stringify(userData),
     });

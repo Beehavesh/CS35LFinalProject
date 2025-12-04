@@ -8,39 +8,6 @@
   cursor: pointer;
   margin-bottom: 0px;
 
-  .like-comment {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    margin-top: 5px;
-  }
-
-  .all-comments {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: rgb(227, 227, 227);
-    border-radius: 10px;
-    position: relative;
-    margin: 10px;
-    .name {
-      color: #212121;
-      text-decoration: none;
-      margin-left: 10px;
-      margin-top: 10px;
-    }
-
-    .comment {
-      margin-left: 10px;
-      margin-top: 0px;
-    }
-
-    .timestamp {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-    }
-  }
-
   p {
     font-family: Inter, sans-serif;
     font-weight: 400;

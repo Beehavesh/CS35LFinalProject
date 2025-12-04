@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import motifv2 from '../Assets/motif-v2.svg';
-import motifChrome from '../Assets/motif-chrome.svg';
+import motifv2 from '../assets/motif-v2.svg';
+import motifChrome from '../assets/motif-chrome.svg';
 import { LoginAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
