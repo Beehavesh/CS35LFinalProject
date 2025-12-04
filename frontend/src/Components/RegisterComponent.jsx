@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import linkedoutlogo from '../Assets/linkedoutlogo2.png';
 import motifv2 from '../Assets/motif-v2.svg';
 import motifChrome from '../Assets/motif-chrome.svg';
 import { RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
