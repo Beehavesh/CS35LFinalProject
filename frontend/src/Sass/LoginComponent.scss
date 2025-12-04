@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 
 // <uniquifier>: Use a unique and descriptive class name
 // FONTS - BEGIN
+
+.inria-serif-regular {
+  font-family: "Inria", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .silkscreen-regular {
   font-family: "Silkscreen", sans-serif;
@@ -106,6 +113,29 @@ model-viewer {
 
 // MARQUEE CODE - END
 
+.page-container {
+    display: grid;
+    place-items: center;
+    height: 100vh; 
+}
+// LEFT/RIGHT SIDE 
+
+.entire-page-container {
+  display: grid; 
+  height: 100vh; 
+  grid-template-columns: 1fr 1fr;
+}
+
+.left-side,
+.right-side {
+  flex: 1; 
+  padding: 15px; // unsure about this
+  display: grid; 
+  place-items: center;
+}
+
+// END 
+
 .login-button {
     font-family: 'Gudea', sans-serif;
     width: 300px;
@@ -124,9 +154,57 @@ model-viewer {
     color: #4E64EB;
 }
 
+.hero-wrapper {
+    z-index: 10; 
+    position: relative; 
+    padding: 2em; 
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; //allow click-through for the 3d model
+    animation: fade-in 2.5s; 
+
+    .hero-divider {
+        flex-direction:column;
+        position: relative;
+    }
+
+    .heading1 {  // to show the name of our brand, MOTIF
+        font-family: "Inria";
+        font-size: 6rem; 
+        margin: 0; 
+        margin-top: 1rem; 
+        padding-bottom: 0.5rem;
+        color: #4E64EB;
+        text-shadow: rgba(137,200,234,0.69) 0px 0px 32px;
+        animation: pulse 5s infinite alternate; 
+    }
+
+    h2 { // first subheading right under title 
+        font-size: 3rem; 
+        line-height: 1; 
+        font-weight: bold; // play with this
+        margin: 0; 
+        text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
+    }
+    h3 {
+        font-size: 2rem; 
+        font-weight: normal;
+        color: #4E64EB;
+    }
+
+    li {
+        font-size: 1.5rem; 
+        line-height: 1.25; 
+        
+    }
+}
+
 .login-wrapper {
     z-index: 10;
     position: relative;
+    justify-content: center; 
+    align-items: center;
+    animation: fade-in 4s; 
 
     .login-divider {
         display: flex;
@@ -136,8 +214,9 @@ model-viewer {
     }
     .heading1 {
     font-family: "Gudea";
-    font-size: 4rem;
+    font-size: 3rem;
     pointer-events: none; 
+    padding-bottom: 1rem;
     text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
 
     }
@@ -173,11 +252,12 @@ model-viewer {
     }
  }
 
-.linkedoutlogo {
+.linkedoutlogo { // change the name eventually
     width: 80px;
-    /*position:absolute;
-    top:20px;
-    left:20px;*/
+    position: absolute; 
+    z-index: 100;
+    top: 0.5em; 
+    left: 0; 
 }
 
 .line-divider {
@@ -211,7 +291,7 @@ model-viewer {
     display: inline-block;
     color: black;
 
-    padding: 0 .5em;
+    padding: 0 0.5em;
     line-height: 1.5em;
     // this is really the only tricky part, you need to specify the background color of the container element...
     color: #7800EB;
@@ -246,5 +326,46 @@ model-viewer {
     .sign-uplink:focus {
         color: #B0A3EB;
     }
+}
+
+// MEDIA QUERIES
+
+/* On mobile, stack them */
+@media (max-width: 768px) {
+    .entire-page-container {
+        grid-template-columns: 1fr;   /* stack */
+        height: auto;                 /* optional */
+    }
+}
+
+// KEYFRAMES 
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 100%; 
+    }
+
+    50% {
+        transform: scale(1.025);
+        opacity: 70%;
+        color: #B0A3EB; 
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 100%;
+    }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to {
+    opacity: 1; 
+    transform: translateY(0);
+  }
 }
 
