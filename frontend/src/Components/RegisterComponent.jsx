@@ -38,12 +38,13 @@ export default function RegisterComponent() {
    const saveUserDataDB = async(userData) =>{
     const auth = getAuth();
     const userId = auth.currentUser.uid; //this is the firebase uid
+    const token = await auth.currentUser.getIdToken();
 
-    await fetch("http://localhost:5001/api/auth",{
+    await fetch("https://cs35lfinalproject.onrender.com/api/auth",{
         method: "POST",
         headers:{
             "Content-Type": "application/json",
-            "x-user-id": userId,
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(userData),
     });
