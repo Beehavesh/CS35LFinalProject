@@ -8,7 +8,7 @@ import getPosts from '../GetPosts/index.jsx';
 
 
 const createLikes = async (token, postID) => {
-    // create likes for the post
+    // console.log("I'm in createLikes");
     try {
         const response = await fetch("https://cs35lfinalproject.onrender.com/api/likes", {
             method: "POST",

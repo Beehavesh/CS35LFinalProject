@@ -57,7 +57,7 @@ export default function LikeButton({ postID }) {
     console.log("like button clicked");
     addLike(postID);
   }
-  //getLikes(postID);
+  // getLikes(postID);
 
   return (
     <div className="like-container" onClick={handleLike}>

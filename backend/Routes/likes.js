@@ -3,7 +3,7 @@ import Like from "../models/Like.js";
 
 const router = express.Router();
 
-router.post("/like", async (req, res) => {
+router.post("/likes", async (req, res) => {
     try {
         const { postID, likedUserIDs } = req.body;
 
