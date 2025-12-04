@@ -73,8 +73,38 @@ app.post("/api/likes", verifyToken, async (req, res) => {
 
 // Get likes for a post
 app.get("/api/likes", verifyToken, async (req, res) => {
-  const likes = await Like.find();
-  res.json(likes);
+  const like = await Like.find({ postID: req.body.pid});
+  res.json(like);
+});
+
+// Like a post
+app.put("/api/likes/:postID/add_like", verifyToken, async (req, res) => {
+  console.log("Liking a post");
+  
+
+  if (!newLikeUserID) return res.status(401).json({ error: "Invalid user ID while trying to like" });
+
+  try {
+    const updatedLikes = await Like.findOneAndUpdate(
+      { postID: postID }, // Filter
+      { $push: { likedUserIDs: newLikeUserID } }, // Update
+      { new: true } // Option: Return the updated document instead of the old one
+    );
+
+    if (!updatedLikes) {
+      return res.status(404).json({ error: 'Posts not found while trying to like' });
+    }
+
+    res.json({
+      message: 'Like added successfully',
+      likes: updatedLikes
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+
 });
 
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./index.scss";
 import { getAuth } from "firebase/auth";
+import LikeButton from '../LikeButton/index.jsx';
 
 const getAllPosts = async (setAllPosts) => {
     try {
@@ -44,6 +45,7 @@ export default function GetPosts() {
             {allPosts.map((post) => (
                 <div key={post._id} className="post-item">
                     <p>{post.text}</p>
+                    <LikeButton postID={post._id}/>
                 </div>
             ))}
         </div>

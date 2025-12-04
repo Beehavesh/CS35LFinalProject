@@ -1,34 +1,15 @@
 import { useState } from 'react';
 import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
-import LikeButton from '../LikeButton/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
+import getPosts from '../GetPosts/index.jsx';
 
-const getLikes = async (setLikeNumber, setIsLiked) => {
-    try {
-        const auth = getAuth(); 
-        const token = await auth.currentUser.getIdToken();
-        const response = await fetch("https://cs35lfinalproject.onrender.com/api/likes", {
-            method: "GET",
-            headers: {
-                
-                Authorization: `Bearer ${token}`
-            }
-        });
-        if (!response.ok) throw new Error("Failed to fetch likes");
-        const data = await response.json();
-        // setLikeNumber(data);
-        // setIsLiked(data);
-    } catch (err) {
-        console.log(err);
-    }   
-};
 
-const createLikes = async (token) => {
+
+const createLikes = async (token, postID) => {
     // create likes for the post
     try {
-        console.log("im in createLikes");
         const response = await fetch("https://cs35lfinalproject.onrender.com/api/likes", {
             method: "POST",
             headers: {
@@ -36,7 +17,7 @@ const createLikes = async (token) => {
                 "Authorization": `Bearer ${token}`,
             },
             body: JSON.stringify({
-                pid: "abcde",
+                pid: postID,
             })
         });
         if (!response.ok) throw new Error("Failed to create likes for this post");
@@ -69,13 +50,18 @@ export default function PostStatus() {
             toast.success("Posted!");
             setPostStatus("");
             setModalOpen(false);
+
+            const data = await response.json();
+            const newPostId = data._id; 
+
+            // Create likes for the post
+            createLikes(token, String(newPostId));
+
         } catch (err) {
             console.log(err);
             toast.error("Failed to create post.");
         }
 
-        //create list of likes for post
-        createLikes(token);
     };
 
     return (
