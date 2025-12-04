@@ -1,34 +1,36 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 import './index.scss';
 
-const ModalComponent = ({ modalOpen, setModalOpen, setStatus, status, sendStatus }) => {
+const ModalComponent = ({ 
+  modalOpen, 
+  setModalOpen, 
+  title, 
+  children, 
+  onSubmit,
+  submitLabel = "Submit",
+  disableSubmit = false,  }) => {
+  const footer = onSubmit 
+  ? [
+      <button
+          key="submit"
+          onClick={onSubmit}
+          disabled={disableSubmit} 
+      >
+          {submitLabel}
+      </button>
+  ] : null ;
   return (
     <>
       <Modal
-        title="Create a post"
+        title={title}
         centered
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
-        footer={[
-            <button
-                onClick={sendStatus}
-                key="submit"
-                type="primary"
-                disabled={status.length === 0}
-            >
-                Post
-            </button>
-        ]}
+        footer={footer}
       >
-      <input 
-        type="text" 
-        placeholder="What's on your mind?" 
-        className="post-input" 
-        onChange={(event) => setStatus(event.target.value)} 
-        value={status}
-        />
+        {children}
       </Modal>
     </>
   );
