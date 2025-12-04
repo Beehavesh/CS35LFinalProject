@@ -7,7 +7,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import admin from "firebase-admin";
 import Post from "./models/Post.js";
-import imageRoutes from "./Routes/images.js";
 import User from "./models/User.js";
 
 
@@ -16,7 +15,6 @@ const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/api", imageRoutes);
 
 // Initialize Firebase admin
 
