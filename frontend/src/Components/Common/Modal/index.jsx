@@ -9,7 +9,17 @@ const ModalComponent = ({
   children, 
   onSubmit,
   submitLabel = "Submit",
-  disableSubmit = false, }) => {
+  disableSubmit = false,  }) => {
+  const footer = onSubmit 
+  ? [
+      <button
+          key="submit"
+          onClick={onSubmit}
+          disabled={disableSubmit} 
+      >
+          {submitLabel}
+      </button>
+  ] : null ;
   return (
     <>
       <Modal
@@ -18,15 +28,7 @@ const ModalComponent = ({
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
-        footer={[
-            <button
-                key="submit"
-                onClick={onSubmit}
-                disabled={disableSubmit} 
-            >
-                {submitLabel}
-            </button>
-        ]}
+        footer={footer}
       >
         {children}
       </Modal>

@@ -11,26 +11,33 @@ export default function PlaylistComponent() {
      { title: "", artist: "", album: "", releaseDate: "", link: "" }
     ]);
     const handleSubmit = async () => {
-    const auth = getAuth();
+        const auth = getAuth();
     const token = await auth.currentUser.getIdToken();
-    
-    const response = await fetch("https://cs35lfinalproject.onrender.com/api/playlists", {
+
+    const payload = {
+      userId: auth.currentUser.uid,
+      playlistTitle: playlistTitle,
+      songs: songs
+    };
+
+    const response = await fetch(
+      "https://cs35lfinalproject.onrender.com/api/playlist",
+      {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-    },
-        body: JSON.stringify({
-        userId: auth.currentUser.uid,
-        playlistTitle,
-         songs
-    })
-    });
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
 
     if (!response.ok) {
-        console.error("Error creating playlist");
+      console.error("Error creating playlist");
     }
+    setModalOpen(false);
     };
+        
     return (
         <div className="playlist-upload-container">
             <div className="playlist-upload">
@@ -38,16 +45,13 @@ export default function PlaylistComponent() {
                     className="open-playlist-form"
                     onClick={() => setModalOpen(true)}
                 >
-                    Start a Post
+                    Create a Playlist
                 </button>
             </div>
             <ModalComponent
                 modalOpen={modalOpen}
                 setModalOpen={setModalOpen}
-                title="Create a Playlist"
                 onSubmit={handleSubmit}
-                submitLabel="Create"
-                disableSubmit={false}
             >
                 <FormComponent />
             </ModalComponent>
