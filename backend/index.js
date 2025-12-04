@@ -1,24 +1,21 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import admin from "firebase-admin";
 import Post from "./models/Post.js";
-import User from "./models/User.js";
 import Like from "./models/Like.js";
-
+import imageRoutes from "./Routes/images.js";
+import likeRoutes from "./Routes/likes.js";
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api", imageRoutes);
+app.use("/api", likeRoutes);
 
 // Initialize Firebase admin
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -30,9 +27,10 @@ mongoose.connect(MONGO_URI, {
 });
 
 // Middleware to verify Firebase token
-
 async function verifyToken(req, res, next) {
   const token = req.headers.authorization?.split(" ")[1];
+
+  if (!token) return res.status(401).json({ error: "No token provided" });
 
   try {
     const decoded = await admin.auth().verifyIdToken(token);
@@ -42,7 +40,6 @@ async function verifyToken(req, res, next) {
     res.status(401).json({ error: "Invalid token" });
   }
 }
-
 
 // Render backend
 app.get("/", (req, res) => {
@@ -81,50 +78,31 @@ app.get("/api/posts", verifyToken, async (req, res) => {
   res.json(posts);
 });
 
-//storing User info into mongo DB
-app.post("/api/auth", verifyToken, async (req, res) =>{
-  console.log("testing if we correctly hit the api auth route");
+// Create likes for a post
+app.post("/api/likes", verifyToken, async (req, res) => {
+  const like = await Like.create({
+    postID: req.body.pid,
+    likedUserIDs: null,
+  });
+  res.json(like);
+});
 
-  const uid = req.user.uid;
-  const{ email, username, photoUrl } = req.body;
-
-  console.log("Received:", { uid, email, username, photoUrl });
-
-  try{
-    //first find user in mongoDB
-    let user = await User.findOne({ firebaseUID: uid});
-    if(!user){
-      console.log("user wasn't found in MongoDB -> we will import now!");
-      user = await User.create({
-        firebaseUID: uid,
-        email,
-        username,
-        photoUrl,
-      });
-    }
-    else{
-      console.log("user exiists in mongoDB already, yay!")
-    }
-    res.json(user);
-    }
-    catch(err){
-      console.error("authenticating DB account error: ", err);
-      res.status(500).json({error: "failed to authenticate DB account"});
-    }
+// Get likes for a post
+app.get("/api/likes", verifyToken, async (req, res) => {
+  const like = await Like.find({ postID: req.body.pid});
+  res.json(like);
 });
 
 // Like a post
-app.put("/api/likes/:postID", verifyToken, async (req, res) => {
+app.put("/api/likes/:postID/add_like", verifyToken, async (req, res) => {
   console.log("Liking a post");
-
-  newLikeUserID = req.body.userID;
-  pID = req.body.postID;
+  
 
   if (!newLikeUserID) return res.status(401).json({ error: "Invalid user ID while trying to like" });
 
   try {
     const updatedLikes = await Like.findOneAndUpdate(
-      { postID: pID }, // Filter
+      { postID: postID }, // Filter
       { $push: { likedUserIDs: newLikeUserID } }, // Update
       { new: true } // Option: Return the updated document instead of the old one
     );
@@ -133,14 +111,18 @@ app.put("/api/likes/:postID", verifyToken, async (req, res) => {
       return res.status(404).json({ error: 'Posts not found while trying to like' });
     }
 
-    res.json({likes: updatedLikes});
+    res.json({
+      message: 'Like added successfully',
+      likes: updatedLikes
+    });
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+
+
+
 });
 
-
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
-

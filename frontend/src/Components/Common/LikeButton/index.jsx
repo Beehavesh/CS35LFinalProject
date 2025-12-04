@@ -42,7 +42,7 @@ const addLike = async (targetPostID) => {
       },
       body: JSON.stringify({
         postID: targetPostID,
-        userID: "Example user ID",
+        newLikeUserID: "Example user ID",
       })
     });
     if (!response.ok) throw new Error("Failed to like this post");
