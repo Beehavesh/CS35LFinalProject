@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import User from "./models/User.js";
+import Like from "./models/Like.js";
 
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
@@ -56,6 +57,22 @@ app.post("/api/posts", verifyToken, async (req, res) => {
     timestamp: Date.now()
   });
   res.json(post);
+});
+
+app.post("/api/like", async (req, res) => {
+    try {
+        const { postID, likedUserIDs } = req.body;
+
+        const like = await Like.create({
+            postID,
+            likedUserIDs,
+        });
+
+        res.status(201).json(like);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to create likes" });
+    }
 });
 
 // Get all posts
