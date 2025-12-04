@@ -4,16 +4,16 @@ import User from "../models/User.js";
 const router = express.Router();
 
 
-app.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try{
-        const{userId, email, username, photoUrl} = req.body;
-        if(!userId || !email){
+        const{firebaseUID, email, username, photoUrl} = req.body;
+        if(!firebaseUID || !email){
             return res.status(400).json({error: "Missing required fields, aka valid email"});
         }
-        let user = await User.findOne({firebaseUID: userId});
+        let user = await User.findOne({firebaseUID});
         if(!user){
             user = await User.create({
-                firebaseUID: userId,
+                firebaseUID,
                 email,
                 username,
                 photoUrl
@@ -26,19 +26,22 @@ app.post("/", async (req, res) => {
         res.status(500).json({error: "Error creating user"});
     }
 });
-/*
-app.post("/api/auth", verifyToken, async (req,res) =>{
-    const{name, email, photoUrl } = req.body;
-    const existing = await User.findOne({ firebaseUID: req.user.uid});
 
-    //prevents from recreating 
-    if(existing) return res.json(existing);
-    const user= await User.create({
-        firebaseUID: req.user.uid,
-        name,
-        email,
-        photoURL
-    });
-    res.json(user);
-})
-    */
+
+router.get("/:uid", async (req,res)=>{
+    try{
+        const user = await User.findOne({firebaseUID: req.params.uid});
+        if(!user){
+            return res.status(404).json({error: "User not found"});
+        }
+        res.json(user);
+
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json({error: "Server error"});
+    }
+});
+
+export default router;
+
