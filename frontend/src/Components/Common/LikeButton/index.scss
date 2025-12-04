@@ -6,7 +6,7 @@
   gap: 5px;
   padding: 7px 10px;
   cursor: pointer;
-  margin-bottom: -20px;
+  margin-bottom: 0px;
 
   .like-comment {
     display: grid;
@@ -14,33 +14,6 @@
     margin-top: 5px;
   }
 
-  .comment-input {
-    height: 40px;
-    background-color: whitesmoke;
-    padding-left: 10px;
-    border-radius: 30px;
-    border: 1px solid #737373;
-    font-family: system-ui;
-    color: #4b4b4b;
-    font-size: 16px;
-  }
-
-  .comment-input:focus {
-    outline: 1px solid #4b4b4b;
-    color: #4b4b4b;
-  }
-  .add-comment-btn {
-    width: 150px;
-    height: 35px;
-    background-color: #0a66c2;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
   .all-comments {
     display: flex;
     justify-content: center;
@@ -67,36 +40,12 @@
       top: 10px;
     }
   }
-  .hr-line {
-    margin-top: -17px;
-    hr {
-      border-top: 1px solid rgb(181, 181, 181);
-    }
-  }
+
   p {
     font-family: Inter, sans-serif;
     font-weight: 400;
     color: rgba(58, 58, 58, 0.835);
     font-size: 14px;
     margin-left: 5px;
-  }
-
-  .likes-comment-inner {
-    display: flex;
-    align-items: center;
-    margin-top: -20px;
-    .blue {
-      color: #0a66c2;
-    }
-
-    .black {
-      color: rgba(58, 58, 58, 0.835);
-    }
-    p {
-      font-family: Inter, sans-serif;
-      font-weight: 600;
-      color: rgba(58, 58, 58, 0.835);
-      font-size: 16px;
-    }
   }
 }
