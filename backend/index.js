@@ -94,8 +94,36 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
       console.error("authenticating DB account error: ", err);
       res.status(500).json({error: "failed to authenticate DB account"});
     }
-
 });
+
+// Like a post
+app.put("/api/likes/:postID", verifyToken, async (req, res) => {
+  console.log("Liking a post");
+
+  newLikeUserID = req.body.userID;
+  pID = req.body.postID;
+
+  if (!newLikeUserID) return res.status(401).json({ error: "Invalid user ID while trying to like" });
+
+  try {
+    const updatedLikes = await Like.findOneAndUpdate(
+      { postID: pID }, // Filter
+      { $push: { likedUserIDs: newLikeUserID } }, // Update
+      { new: true } // Option: Return the updated document instead of the old one
+    );
+
+    if (!updatedLikes) {
+      return res.status(404).json({ error: 'Posts not found while trying to like' });
+    }
+
+    res.json({likes: updatedLikes});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
 
