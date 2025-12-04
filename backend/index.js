@@ -1,11 +1,17 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import admin from "firebase-admin";
+//import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import imageRoutes from "./Routes/images.js";
+import User from "./models/User.js";
 
-const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+
+//const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 const app = express();
 app.use(cors());
@@ -13,9 +19,11 @@ app.use(express.json());
 app.use("/api", imageRoutes);
 
 // Initialize Firebase admin
+/*
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
+*/
 
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI 
@@ -24,10 +32,9 @@ mongoose.connect(MONGO_URI, {
 });
 
 // Middleware to verify Firebase token
+/*
 async function verifyToken(req, res, next) {
   const token = req.headers.authorization?.split(" ")[1];
-
-  if (!token) return res.status(401).json({ error: "No token provided" });
 
   try {
     const decoded = await admin.auth().verifyIdToken(token);
@@ -36,6 +43,16 @@ async function verifyToken(req, res, next) {
   } catch (err) {
     res.status(401).json({ error: "Invalid token" });
   }
+}
+  */
+
+function verifyToken(req,res,next){
+  const uid = req.headers["x-user-id"];
+  if(!uid){
+    return res.status(401).json({error: "Missing x-user-id header"});
+  }
+  req.user = {uid};
+  next();
 }
 
 // Render backend
@@ -59,4 +76,39 @@ app.get("/api/posts", verifyToken, async (req, res) => {
   res.json(posts);
 });
 
-app.listen(process.env.PORT || 5001, () => console.log("Server running"));
+//storing User info into mongo DB
+app.post("/api/auth", verifyToken, async (req, res) =>{
+  console.log("testing if we correctly hit the api auth route");
+
+  const uid = req.user.uid;
+  const{ email, username, photoUrl } = req.body;
+
+  console.log("Received:", { uid, email, username, photoUrl });
+
+  try{
+    //first find user in mongoDB
+    let user = await User.findOne({ firebaseUID: uid});
+    if(!user){
+      console.log("user wasn't found in MongoDB -> we will import now!");
+      user = await User.create({
+        firebaseUID: uid,
+        email,
+        username,
+        photoUrl,
+      });
+    }
+    else{
+      console.log("user exiists in mongoDB already, yay!")
+    }
+    res.json(user);
+    }
+    catch(err){
+      console.error("authenticating DB account error: ", err);
+      res.status(500).json({error: "failed to authenticate DB account"});
+    }
+
+});
+
+app.listen(5001, () => console.log("Server running on 5001"));
+//app.listen(process.env.PORT || 5001, () => console.log("Server running"));
+
