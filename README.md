@@ -1,6 +1,7 @@
 # CS35LFinalProject
 
 Tech Stack: 
+
     Frontend:
         React, HTML, SCSS
     Backend:
@@ -9,6 +10,7 @@ Tech Stack:
         Cucumber, Playwright
     External:
         Google Firebase
+
 We're using npm to manage dependencies. 
 The website can be viewed by running "npm init" and then "npm run dev" in the /frontend folder. 
 It runs on localhost:5173 in the browser.
@@ -19,6 +21,8 @@ Tests are done using cucumber and playwright.
 To run cucumber tests: npx cucumber-js 
 
 Here are our dependencies: 
+
+```
 - Backend:
 	"cors": "^2.8.5",
     "express": "^5.1.0",
@@ -60,6 +64,8 @@ Here are our dependencies:
     "playwright": "^1.57.0"
   }
 }
+```
 
+If you are on WSL and you can't start the MongoDB server, type the following commands into your terminal:
 
-
+cd / && sudo mkdir -p data/db && sudo chown -R `id -un` data/db
