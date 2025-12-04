@@ -1,18 +1,14 @@
-import React, { use, useMemo, useState } from 'react';
+import { useState } from 'react';
 import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
-import LikeButton from '../LikeButton/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
 import getPosts from '../GetPosts/index.jsx';
 
 
 
-
-
-
 const createLikes = async (token, postID) => {
-    // create likes for the post
+    // console.log("I'm in createLikes");
     try {
         const response = await fetch("https://cs35lfinalproject.onrender.com/api/likes", {
             method: "POST",
@@ -30,12 +26,9 @@ const createLikes = async (token, postID) => {
     }  
 }
 
-
-
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
     const [postStatus, setPostStatus] = useState('');
-    const [allPosts, setAllPosts] = useState([]);
     
     const sendStatus = async () => { 
         const auth = getAuth(); 
@@ -58,10 +51,8 @@ export default function PostStatus() {
             setPostStatus("");
             setModalOpen(false);
 
-            // Thanks Gemini for providing the code below
             const data = await response.json();
             const newPostId = data._id; 
-            console.log("Newly created ID:", newPostId);
 
             // Create likes for the post
             createLikes(token, String(newPostId));
@@ -73,10 +64,6 @@ export default function PostStatus() {
 
     };
 
-    useMemo(() => {
-        getPosts(setAllPosts);
-    }, []);
-
     return (
         <div className="post-status-container">
             <div className="post-status">
@@ -87,15 +74,21 @@ export default function PostStatus() {
                     Start a Post
                 </button>
             </div>
-            <ModalComponent status={postStatus} setStatus={setPostStatus} modalOpen={modalOpen} setModalOpen={setModalOpen} sendStatus={sendStatus}/>
-        {allPosts.map((post) => {
-            return (
-                <div key={post._id} className="post-item">
-                    <p>{post.text}</p>
-                    <LikeButton postID={post._id}/>
-                </div>
-            );
-        })}
-        </div>
-    );
+            <ModalComponent
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                title="Create a Post"
+                onSubmit={sendStatus}
+                submitLabel="Post"
+                disableSubmit={postStatus.trim().length === 0}
+            >
+                <input
+                    type="text"
+                    placeholder="What's on your mind?"
+                    className="post-input"
+                    onChange={(e) => setPostStatus(e.target.value)}
+                    value={postStatus}
+                />
+            </ModalComponent>
+        </div>);
 }

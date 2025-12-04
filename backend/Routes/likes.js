@@ -3,7 +3,7 @@ import Like from "../models/Like.js";
 
 const router = express.Router();
 
-router.post("/like", async (req, res) => {
+router.post("/likes", async (req, res) => {
     try {
         const { postID, likedUserIDs } = req.body;
 
@@ -16,6 +16,24 @@ router.post("/like", async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Failed to create likes" });
+    }
+});
+
+router.put("/likes", async (req, res) => {
+    try {
+        // const { postID, uid } = req.body;
+
+        const updatedLikes = await Like.findOneAndReplace(
+            { postID: req.body.postID },
+            { $push: { likedUserIDs: req.body.userID } },
+            { new: true }
+        );
+
+        res.json({likes: updatedLikes});
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to like" });
     }
 });
 
