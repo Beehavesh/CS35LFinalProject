@@ -78,7 +78,7 @@ export default function RegisterComponent() {
             </div>
         </div>
 
-        <div className="left-side">
+        <div className="right-side">
         <div className = "login-wrapper">
             <div className = "login-divider">
                 <h1 className="heading1">SIGN UP</h1>
