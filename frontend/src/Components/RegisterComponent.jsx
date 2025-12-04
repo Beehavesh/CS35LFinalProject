@@ -66,7 +66,7 @@ export default function RegisterComponent() {
         <div className="left-side"> 
             <div className="hero-wrapper">
                 <div className="hero-divider">
-                    <h1 className="heading1"> MOTIF </h1>
+                    <h1 className="heading1"> MOTIF. </h1>
                     <h2> an innovative platform for musicians, composers, & employers to connect. </h2>
                     <h3> FEATURING... </h3>
                     <ul>
@@ -111,7 +111,7 @@ export default function RegisterComponent() {
                         Sign up
                 </button>
             </div>
-            <hr class="line-divider" data-content="or" />
+            <hr className="line-divider" data-content="or" />
             <div className='google-button-wrapper'>
             <GoogleButton
                 className="google-button"

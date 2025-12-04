@@ -58,8 +58,8 @@ export default function LoginComponent() {
             alt="3d model of motif logo"
             ></model-viewer>
         </div>
+        <img src = {motifChrome} className = "linkedoutlogo"/>
         <div className = "login-wrapper">
-            <img src = {motifChrome} className = "linkedoutlogo"/>
             <div className = "login-divider">
                 <h1 className="heading1">SIGN IN</h1>
                 <p className="subheading1">Welcome back! Please enter your details.</p>
@@ -95,6 +95,7 @@ export default function LoginComponent() {
             <p className="signup-text">Don't have an account? <span className="signup-link" onClick={() => navigate("/register")}>Sign up</span></p>
             </div>
         </div>
+
     </>
     );
 }
