@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import User from "./models/User.js";
+import Like from "./models/Like.js";
 
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
@@ -96,8 +97,23 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
     }
 });
 
+// Create likes for a post
+app.post("/api/likes", verifyToken, async (req, res) => {
+  const like = await Like.create({
+    postID: req.body.pid,
+    likedUserIDs: null,
+  });
+  res.json(like);
+});
+
+// Get likes for a post
+app.get("/api/likes", verifyToken, async (req, res) => {
+  const like = await Like.find({ postID: req.body.pid});
+  res.json(like);
+});
+
 // Like a post
-app.put("/api/likes/:postID", verifyToken, async (req, res) => {
+app.put("/api/likes", verifyToken, async (req, res) => {
   console.log("Liking a post");
 
   newLikeUserID = req.body.userID;
