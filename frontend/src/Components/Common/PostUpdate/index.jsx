@@ -42,8 +42,8 @@ export default function PostStatus() {
             setPostStatus("");
             setModalOpen(false);
 
-            const data = await response.json();
-            const newPostId = data._id; 
+            //const data = await response.json();
+            // const newPostId = data._id; 
             // console.log(data);
 
         } catch (err) {

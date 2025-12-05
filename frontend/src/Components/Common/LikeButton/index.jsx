@@ -26,6 +26,10 @@ const addLike = async (likedUsers, userID, postID) => {
       })
     });
     if (!response.ok) throw new Error("Failed to like this post");
+
+    const data = await response.json();
+    // console.log(data);
+
   } catch (err) {
     console.log(err);
   }
