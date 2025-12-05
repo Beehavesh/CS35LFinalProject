@@ -20,7 +20,7 @@ app.use("/api/posts", postRoutes);
 app.use("/api", playlistRoutes);
 
 // Render backend
-app.get("/", (res) => {
+app.get("/", (req, res) => {
   res.send("Backend running");
 });
 
