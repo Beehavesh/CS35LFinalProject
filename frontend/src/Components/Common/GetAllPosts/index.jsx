@@ -46,7 +46,13 @@ export default function GetAllPosts() {
             {allPosts.map((post) => (
                 <div key={post._id} className="post-item">
                     <p>{post.text}</p>
+<<<<<<< HEAD:frontend/src/Components/Common/GetPosts/index.jsx
+                    <p>{post.company}</p>
+                    <p>{post.description}</p>
+                    <LikeButton postID={post._id}/>
+=======
                     <LikeButton likedUsers={post.likedUsers} postID={post._id}/>
+>>>>>>> 782e8890d234d477b6e42c49ed67155e051adeb7:frontend/src/Components/Common/GetAllPosts/index.jsx
                 </div>
             ))}
         </div>
