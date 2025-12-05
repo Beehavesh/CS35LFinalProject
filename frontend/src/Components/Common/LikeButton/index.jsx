@@ -9,8 +9,12 @@ import { BsFillHandThumbsUpFill, BsHandThumbsUp } from "react-icons/bs";
 
 // add a like to post
 const addLike = async (likedUsers, userID, postID) => {
-  try {
 
+  console.log("Adding a like with: ");
+  console.log("userID: " + userID);
+  console.log("postID: " + postID);
+
+  try {
     const auth = getAuth();
     const token = await auth.currentUser.getIdToken();
 
@@ -28,7 +32,7 @@ const addLike = async (likedUsers, userID, postID) => {
     if (!response.ok) throw new Error("Failed to like this post");
 
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
 
   } catch (err) {
     console.log(err);
@@ -39,7 +43,7 @@ const addLike = async (likedUsers, userID, postID) => {
 export default function LikeButton({ likedUsers, userID, postID }) {
 
   const handleLike = () => {
-    console.log("like button clicked");
+    // console.log("like button clicked");
     addLike(likedUsers, userID, postID);
   }
   
