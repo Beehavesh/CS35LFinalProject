@@ -1,12 +1,15 @@
 .like-container {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
 
   flex-direction: column;
   gap: 5px;
   padding: 7px 10px;
-  cursor: pointer;
   margin-bottom: 0px;
+
+  .like-button {
+    cursor: pointer;
+  }
 
   p {
     font-family: Inter, sans-serif;
