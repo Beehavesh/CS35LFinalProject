@@ -1,25 +1,12 @@
 import express from "express";
 import verifyToken from "../middleware/auth.js";
-import { createPost, getAllPosts, getPostsMatchingUserTags } from "../Controllers/postController.js";
+import { createPost, getAllPosts, getPostsMatchingUserTags, patchLikes } from "../Controllers/postController.js";
 
 const router = express.Router();
 
 router.post("/", verifyToken, createPost);
 router.get("/", verifyToken, getAllPosts);
 router.get("/matching/:userId", getPostsMatchingUserTags);
-
-// Like a post
-router.patch("/", verifyToken, async (req, res) => {
-  try {
-    const like = await Post.updateOne(
-      { _id: req.body.pid },
-      { $addToSet: { likedUsers: req.body.uid } }
-    )
-    res.status(201).json(like);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to like post" });
-  }
-});
+router.patch("/", verifyToken, patchLikes); 
 
 export default router;

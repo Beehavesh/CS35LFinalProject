@@ -1,5 +1,6 @@
 import Post from "../models/Post.js";
 import Playlist from "../models/Playlist.js";
+import { exp } from "three/tsl";
 
 // Create a new post
 export const createPost = async (req, res) => {
@@ -54,5 +55,19 @@ export const getPostsMatchingUserTags = async (req, res) => {
   } catch (err) {
     console.error("MATCHING JOBS ERR:", err);
     res.status(500).json({ error: err.message });
+  }
+};
+
+// Like a post
+export const patchLikes = async (req, res) => async (req, res) => {
+  try {
+    const like = await Post.updateOne(
+      { _id: req.body.pid },
+      { $addToSet: { likedUsers: req.body.uid } }
+    )
+    res.status(201).json(like);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to like post" });
   }
 };
