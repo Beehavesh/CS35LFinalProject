@@ -51,7 +51,7 @@ export default function GetJobPosts() {
                     <h2>{post.company}</h2>
                     <h3>{post.description}</h3>
                 {post.tags.map((tag, index) => (
-                    <p className="wrapped" key={index}>{tag.genre}</p>
+                    <p className="wrapped" key={index}>{tag}</p>
                     ))}   
                     <LikeButton
                     likedUsers={post.likedUsers}
