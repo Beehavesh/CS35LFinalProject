@@ -28,7 +28,8 @@ const getJobPosts = async (setJobPosts) => {
         if (!response.ok) throw new Error("Failed to fetch job posts");
 
         const data = await response.json();
-        setAllPosts(data);
+        setJobPosts(data);
+        console.log(response);
     } catch (err) {
         console.log(err);
     }
