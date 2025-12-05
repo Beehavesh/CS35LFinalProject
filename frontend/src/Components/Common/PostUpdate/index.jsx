@@ -68,6 +68,7 @@ const toggleSelection = (id) => {
                 body: JSON.stringify({
                     text: jobRole,
                     tags: userJobTags, //this should be set upon submit
+                    company: companyName,
                     description: jobDescription,
 
                 })
@@ -78,6 +79,7 @@ const toggleSelection = (id) => {
             setCompanyName("");
             setJobDescription("");
             setModalOpen(false);
+            console.log(data);
 
             //const data = await response.json();
             // const newPostId = data._id; 
