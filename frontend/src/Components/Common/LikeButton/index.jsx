@@ -8,22 +8,21 @@ import { BsFillHandThumbsUpFill, BsHandThumbsUp } from "react-icons/bs";
 
 
 // add a like to post
-const addLike = async (likedUsers, userID) => {
+const addLike = async (likedUsers, userID, postID) => {
   try {
 
     const auth = getAuth();
     const token = await auth.currentUser.getIdToken();
 
     const response = await fetch(`https://cs35lfinalproject.onrender.com/api/posts`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        "op": "add",
-        "path": "/likedUsers/-",
-        "value": userID,
+        pid: postID,
+        uid: userID
       })
     });
     if (!response.ok) throw new Error("Failed to like this post");
@@ -33,11 +32,11 @@ const addLike = async (likedUsers, userID) => {
   
 }
 
-export default function LikeButton({ likedUsers, userID }) {
+export default function LikeButton({ likedUsers, userID, postID }) {
 
   const handleLike = () => {
     console.log("like button clicked");
-    addLike(likedUsers, userID);
+    addLike(likedUsers, userID, postID);
   }
   
   let likeNumber = 0;
