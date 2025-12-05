@@ -45,7 +45,7 @@ export default function GetPosts() {
             {allPosts.map((post) => (
                 <div key={post._id} className="post-item">
                     <p>{post.text}</p>
-                    <LikeButton userID={post.likedUsers}/>
+                    <LikeButton likedUsers={post.likedUsers} userID="exampleUserID" postID={post._id}/>
                 </div>
             ))}
         </div>

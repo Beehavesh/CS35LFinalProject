@@ -13,24 +13,6 @@ const initialJobTags = [
 
 
 
-const createLikes = async (token, postID) => {
-    // console.log("I'm in createLikes");
-    try {
-        const response = await fetch("https://cs35lfinalproject.onrender.com/api/likes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                pid: postID,
-            })
-        });
-        if (!response.ok) throw new Error("Failed to create likes for this post");
-    } catch (err) {
-        console.log(err);
-    }  
-}
 
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -62,10 +44,7 @@ export default function PostStatus() {
 
             const data = await response.json();
             const newPostId = data._id; 
-            console.log(data);
-
-            // Create likes for the post
-            createLikes(token, String(newPostId));
+            // console.log(data);
 
         } catch (err) {
             console.log(err);
