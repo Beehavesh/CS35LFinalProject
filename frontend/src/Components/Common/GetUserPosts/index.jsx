@@ -51,7 +51,7 @@ const getApplicants = async (postId, setApplicants) => {
     if (!response.ok) throw new Error("Failed to fetch applicants");
 
     const data = await response.json();
-    setApplicants(data.applicants);
+    setApplicants(data.likes);
   } catch (err) {
     console.log(err);
   }
@@ -76,7 +76,6 @@ function PostWithApplicants({ post }) {
       <ol className="applicant-list">
         {applicants.map((a) => (
           <li key={a.firebaseUID} className="applicant-item">
-            <img className="applicant-pfp" src={a.photoUrl} alt="profile" />
             <div>
               <p className="applicant-username">{a.username}</p>
               <p className="applicant-bio">{a.bio}</p>
