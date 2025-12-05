@@ -27,23 +27,6 @@ app.get("/", (res) => {
   res.send("Backend running");
 });
 
-// Create a new post
-app.post("/api/posts", verifyToken, async (req, res) => {
-  const post = await Post.create({
-    userId: req.user.uid,
-    text: req.body.text,
-    tags: req.body.tags, // check if it should be req.body or something else
-    timestamp: Date.now()
-  }); 
-  res.json(post);
-});
-
-// Get all posts
-app.get("/api/posts", verifyToken, async (req, res) => {
-  const posts = await Post.find().sort({ timestamp: -1 });
-  res.json(posts);
-});
-
 app.post("/api/like", async (req, res) => {
     try {
         const { postID, likedUserIDs } = req.body;
