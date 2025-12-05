@@ -9,8 +9,8 @@ import User from "./models/User.js";
 import Like from "./models/Like.js";
 import likeRoutes from "./Routes/likes.js";
 import playlistRoutes from "./Routes/playlist.js";
-import { verifyToken } from "./middleware/auth.js";
-import { connectDB } from "./config/mongodb.js";
+import verifyToken from "./middleware/auth.js";
+import connectDB from "./config/mongodb.js";
 
 connectDB();
 
