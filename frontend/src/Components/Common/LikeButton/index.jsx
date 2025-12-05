@@ -4,8 +4,6 @@ import { toast } from 'react-toastify';
 import "./index.scss";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-
-
 // add a like to post
 const addLike = async (likedUsers, postID) => {
 
@@ -50,9 +48,9 @@ export default function LikeButton({ likedUsers, postID }) {
   return (
     <div className="like-container">
       <div className="like-button" onClick={handleLike}>
-        <AiOutlineHeart size={25} />
+        <h3>Apply</h3>
       </div>
-      <p>{likeNumber}</p>
+      <p> Number of Applications: {likeNumber}</p>
     </div>
   );
 }
