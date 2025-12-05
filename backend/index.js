@@ -55,21 +55,5 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
     }
 });
 
-
-// Like a post
-app.patch("/api/posts", verifyToken, async (req, res) => {
-
-  try {
-    const like = await Post.updateOne(
-      { _id: req.body.pid },
-      { $addToSet: { likedUsers: req.body.uid } }
-    )
-    res.status(201).json(like);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to like post" });
-  }
-});
-
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
 
