@@ -170,6 +170,7 @@ model-viewer {
 
     .heading1 {  // to show the name of our brand, MOTIF
         font-family: "Inria";
+        text-align: left; 
         font-size: 6rem; 
         margin: 0; 
         margin-top: 1rem; 
@@ -180,6 +181,7 @@ model-viewer {
     }
 
     h2 { // first subheading right under title 
+        text-align: left; 
         font-size: 3rem; 
         line-height: 1; 
         font-weight: bold; // play with this
@@ -216,12 +218,14 @@ model-viewer {
     font-family: "Gudea";
     font-size: 3rem;
     pointer-events: none; 
-    padding-bottom: 1rem;
+    margin: 0; 
+    padding: 0; 
     text-shadow: rgba(176,163,235,0.52) 0px 0px 35px;
 
     }
     .subheading1 {
-    margin-top: -45px;
+    margin: 0; 
+    padding: 0.5rem;
     text-shadow: rgba(121,0,235,1) 0px 0px 19px;
     }
 
