@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./index.scss";
 import { getAuth } from "firebase/auth";
-import LikeButton from '../LikeButton/index.jsx';
 
 // Fetch all posts created by current user
 const getUserPosts = async (setUserPosts) => {
@@ -52,7 +51,7 @@ const getApplicants = async (postId, setApplicants) => {
     if (!response.ok) throw new Error("Failed to fetch applicants");
 
     const data = await response.json();
-    setApplicants(data.likedUsers);
+    setApplicants(data.likes || []);
   } catch (err) {
     console.log(err);
   }

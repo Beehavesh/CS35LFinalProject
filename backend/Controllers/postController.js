@@ -110,7 +110,7 @@ export const getLikes = async (req, res) => {
       "firebaseUID username"         // fields to return
     );
 
-    res.json({ applicants });
+    res.json({ likes });
   } catch (err) {
     console.error("GET APPLICANTS ERROR:", err);
     res.status(500).json({ error: "Failed to fetch applicants" });
