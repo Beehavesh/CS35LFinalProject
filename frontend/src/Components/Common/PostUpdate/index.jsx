@@ -6,11 +6,15 @@ import { toast } from 'react-toastify';
 import getPosts from '../GetAllPosts/index.jsx';
 
 const initialJobTags = [
-    { id: 0, genre: 'classical', selected: false},
-    { id: 1, genre: 'rock', selected: false},
-    { id: 2, genre: 'country', selected: false},
-    { id: 3, genre: 'pop', selected: false},
-    { id: 4, genre: 'EDM', selected: false}
+    { id: 0, genre: 'Rock', selected: false},
+    { id: 1, genre: 'Pop', selected: false},
+    { id: 2, genre: 'Hip-Hop', selected: false},
+    { id: 3, genre: 'R&B', selected: false},
+    { id: 4, genre: 'Jazz', selected: false},
+    { id: 5, genre: 'Country', selected: false},
+    { id: 6, genre: 'EDM', selected: false},
+    { id: 7, genre: 'Classical', selected: false},
+
 ]
 
 
