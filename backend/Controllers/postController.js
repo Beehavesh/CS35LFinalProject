@@ -59,7 +59,7 @@ export const getPostsMatchingUserTags = async (req, res) => {
 
     // 3. Match job posts where tags.genre overlaps
     const jobs = await Post.find({
-      "tags.genre": { $in: userTags }
+      "tags.genre": { $in: genres }
     });
     console.log(jobs);
     
