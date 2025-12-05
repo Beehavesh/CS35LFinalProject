@@ -51,14 +51,15 @@ export const getPostsMatchingUserTags = async (req, res) => {
     // 2. Flatten user genre tags into an array
     const userTags = [
       ...new Set(
-        playlists.flatMap(p => p.genreTags))
+        playlists.flatMap(p => p.genreTags)
+      ),
     ];
 
     console.log("User tags:", userTags);
 
     // 3. Match job posts where tags.genre overlaps
     const jobs = await Post.find({
-      "tags.genre": { $in: genres }
+      "tags.genre": { $in: userTags }
     });
     console.log(jobs);
     
