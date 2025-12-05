@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+import Playlist from "../models/Playlist.js";
 
 // Create a new post
 export const createPost = async (req, res) => {
