@@ -18,7 +18,7 @@ export default function HomeComponent() {
         form.append("image", currentImage);
 
         try {
-            const response = await fetch("http://localhost:5001/api/auth", {
+            const response = await fetch("http://localhost:5001/api/posts", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`

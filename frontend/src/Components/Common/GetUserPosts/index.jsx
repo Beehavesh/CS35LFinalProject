@@ -51,7 +51,7 @@ const getApplicants = async (postId, setApplicants) => {
     if (!response.ok) throw new Error("Failed to fetch applicants");
 
     const data = await response.json();
-    setApplicants(data.likes);
+    setApplicants(data.likes || []);
   } catch (err) {
     console.log(err);
   }
@@ -67,13 +67,6 @@ function PostWithApplicants({ post }) {
 
   return (
     <div className="user-post-item">
-                    <h1>{post.text}</h1>
-                    <h2>{post.company}</h2>
-                    <h3>{post.description}</h3>
-                {post.tags.map((tag, index) => (
-                    <p className="wrapped" key={index}>{tag.genre}</p>
-                    ))}   
-
       <h3>Applicants:</h3>
 
       {applicants.length === 0 && <p>No applicants yet.</p>}

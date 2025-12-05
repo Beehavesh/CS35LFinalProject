@@ -95,19 +95,19 @@ export const patchLikes = async (req, res) => {
   }
 };
 
-//Get a list of who liked a post
+// Get applicants (users who liked) for a post
 export const getLikes = async (req, res) => {
   try {
     const { pid } = req.params;
 
-    // 1. Get the post
+    // 1. Find post
     const post = await Post.findById(pid);
     if (!post) return res.status(404).json({ error: "Post not found" });
 
-    // 2. Get all users whose uid is in post.likes
+    // 2. Query Users collection by firebaseUID
     const likes = await User.find(
-      { firebaseUID: { $in: post.likes } },  // match UIDs
-      "firebaseUID username bio"                 // return only these fields
+      { firebaseUID: { $in: post.likedUsers } },  // matching UIDs
+      "firebaseUID username"         // fields to return
     );
 
     res.json({ likes });
