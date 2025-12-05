@@ -48,7 +48,17 @@ export default function GetJobPosts() {
             {jobPosts.map((post) => (
                 <div key={post._id} className="job-post-item">
                     <p>{post.text}</p>
-                    <LikeButton likedUsers={post.likedUsers} postID={post._id}/>
+                    <LikeButton
+                    likedUsers={post.likedUsers}
+                    setLikedUsers={(newLikes) => {
+                        setJobPosts((prevPosts) =>
+                            prevPosts.map((p) =>
+                                p._id === post._id ? { ...p, likedUsers: newLikes } : p
+                            )
+                        );
+                    }}
+                    postID={post._id}
+                    />
                 </div>
             ))}
         </div>
