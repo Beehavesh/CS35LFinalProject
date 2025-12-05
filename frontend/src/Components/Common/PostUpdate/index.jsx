@@ -79,6 +79,7 @@ const toggleSelection = (id) => {
             setCompanyName("");
             setJobDescription("");
             setModalOpen(false);
+            console.log(data);
 
             //const data = await response.json();
             // const newPostId = data._id; 
