@@ -4,19 +4,8 @@ import { Form } from 'antd';
 import { getAuth } from 'firebase/auth';
 import FormComponent from './Common/Form';
 import ModalComponent from './Common/Modal';
+import GetUserPlaylists from './Common/GetUserPlaylists';
 
-const handleTags = async () => {
-        const auth = getAuth();
-        const userId = auth.currentUser.uid;
-
-        const res = await fetch(
-        `https://cs35lfinalproject.onrender.com/api/playlist/${userId}/tags`
-        );
-
-        const tags = await res.json();
-        console.log("User tags:", tags);
-    };
-    
 export default function PlaylistComponent() {
     const [modalOpen, setModalOpen] = useState(false);
     const [form] = Form.useForm(); 
@@ -78,7 +67,7 @@ export default function PlaylistComponent() {
                 <FormComponent form={form}/>
             </ModalComponent>
             //temporary - remove later
-            <button onClick={handleTags}></button>
+            <GetUserPlaylists />
         </div>
     );
 }
