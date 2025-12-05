@@ -4,13 +4,21 @@ import { Form } from 'antd';
 import { getAuth } from 'firebase/auth';
 import FormComponent from './Common/Form';
 import ModalComponent from './Common/Modal';
+import GetUserPlaylists from './Common/GetUserPlaylists';
 
 export default function PlaylistComponent() {
     const [modalOpen, setModalOpen] = useState(false);
     const [form] = Form.useForm(); 
     const handleSubmit = async () => {
-        const auth = getAuth();
-        const token = await auth.currentUser.getIdToken();
+    const auth = getAuth();
+    const token = await auth.currentUser.getIdToken();
+
+    try {
+    await form.validateFields();
+    } catch (err) {
+    console.error("Validation failed, not submitting", err);
+    return;
+    }
 
     const values = form.getFieldsValue();
 
@@ -18,6 +26,7 @@ export default function PlaylistComponent() {
         userId: auth.currentUser.uid,
         playlistTitle: values.playlistTitle,
         songs: values.songs,
+        genreTags: values.genreTags || []
     };
 
     console.log("Submitting payload:", payload);
@@ -38,7 +47,7 @@ export default function PlaylistComponent() {
       console.error("Error creating playlist");
     }
     setModalOpen(false);
-    };
+}
         
     return (
         <div className="playlist-upload-container">
@@ -57,6 +66,7 @@ export default function PlaylistComponent() {
             >
                 <FormComponent form={form}/>
             </ModalComponent>
+            <GetUserPlaylists />
         </div>
     );
 }

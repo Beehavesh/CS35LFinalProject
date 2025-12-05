@@ -3,7 +3,7 @@ import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
-import getPosts from '../GetPosts/index.jsx';
+import getPosts from '../GetAllPosts/index.jsx';
 
 const initialJobTags = [
     { id: 0, genre: 'classical', selected: false},
@@ -79,12 +79,9 @@ const toggleSelection = (id) => {
             setJobDescription("");
             setModalOpen(false);
 
-            const data = await response.json();
-            const newPostId = data._id; 
-            console.log(data);
-
-            // Create likes for the post
-            createLikes(token, String(newPostId));
+            //const data = await response.json();
+            // const newPostId = data._id; 
+            // console.log(data);
 
         } catch (err) {
             console.log(err);

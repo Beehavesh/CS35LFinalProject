@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GetPosts from './Common/GetPosts/index.jsx';
+import GetJobPosts from './Common/GetJobPosts/index.jsx';
 import '../Sass/HomeComponent.scss';
 import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
@@ -34,7 +34,7 @@ export default function HomeComponent() {
     };
     return (
         <div>
-            <GetPosts />
+            <GetJobPosts />
             <input type={"file"} onChange={getImage} />
             <button onClick={sendImage}>Upload</button>
         </div>

@@ -1,26 +1,13 @@
 import express from "express";
-import Post from "../models/Post.js"; 
+import verifyToken from "../middleware/auth.js";
+import { createPost, getAllPosts, getUserPosts, getPostsMatchingUserTags, patchLikes } from "../Controllers/postController.js";
 
 const router = express.Router();
 
-router.post("/post", async (req, res) => {
-    try {
-        const { text, company, description, userId, tags } = req.body;
-
-        const post = await Post.create({
-            text,
-            company,
-            description,
-            userId,
-            tags,
-            createdAt: new Date(),
-        });
-
-        res.status(201).json(post);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Failed to create post" });
-    }
-});
+router.post("/", verifyToken, createPost);
+router.get("/", verifyToken, getAllPosts);
+router.get("/:userId", verifyToken, getUserPosts);
+router.get("/matching/:userId", getPostsMatchingUserTags);
+router.patch("/", verifyToken, patchLikes); 
 
 export default router;

@@ -4,7 +4,7 @@ import User from "../models/User.js";
 const router = express.Router();
 
 
-app.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try{
         const{userId, email, username, photoUrl} = req.body;
         if(!userId || !email){
@@ -26,6 +26,8 @@ app.post("/", async (req, res) => {
         res.status(500).json({error: "Error creating user"});
     }
 });
+
+export default router;
 /*
 app.post("/api/auth", verifyToken, async (req,res) =>{
     const{name, email, photoUrl } = req.body;
