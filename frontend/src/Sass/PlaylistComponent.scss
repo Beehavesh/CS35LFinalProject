@@ -7,7 +7,7 @@
     .playlist-upload {
         width: 80%;
         height: 50px;
-        background-color: #ffffff;
+        background-color: #0E0E0E;
         color: white;
         border: none;
         border-radius: 25px;
@@ -39,4 +39,53 @@
             }
         }
     }
+}
+.modalStyle {
+   background-color: #0E0E0E;
+   font-family: 'Gudea';
+}
+
+
+
+
+.heading1 {  // to show the name of our brand, MOTIF
+        font-family: "Inria";
+        text-align: center;
+        font-size: 6rem; 
+        margin: 0; 
+        margin-top: 1rem; 
+        padding-bottom: 0.5rem;
+        color: #4E64EB;
+        text-shadow: rgba(137,200,234,0.69) 0px 0px 32px;
+        animation: colorChange 5s infinite alternate; 
+ }
+
+ h2 {
+    text-align: center;
+ }
+
+ @keyframes colorChange {
+    0% {
+        opacity: 100%; 
+    }
+
+    50% {
+        opacity: 70%;
+        color: #B0A3EB; 
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to {
+    opacity: 1; 
+    transform: translateY(0);
+  }
 }

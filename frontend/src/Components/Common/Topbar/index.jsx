@@ -1,7 +1,8 @@
 import ProfilePopup from "../ProfilePopup";
 import React, { useState } from "react";
 import './index.scss';
-import linkedoutlogo from '../../../assets/linkedoutlogo2.png';
+import motifChrome from '../../../assets/motif-chrome.svg';
+import motifv2 from '../../../assets/motif-v2.svg';
 import user from "../../../assets/user.png";
 import { FaHome, FaUser, FaItunesNote, FaBriefcase, FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ export default function Topbar() {
     }
     return (
         <div className="topbar-container">
-            <img src={linkedoutlogo} alt="LinkedOut Logo" height="50px" style={{ margin: '5px' }} />
+            <img src={motifv2} alt="Motif Logo" height="50px" style={{ margin: '5px' }} />
             <div className="icons">
                 <FaHome size={40} className="icon" onClick={()=>goToRoute("/home")} />
                 <FaUser size={35} className="icon" onClick={()=>goToRoute("/profile")}/>

@@ -50,6 +50,8 @@ export default function PlaylistComponent() {
 }
         
     return (
+        <>
+        <h1 className="heading1"> YOUR MUSIC </h1>
         <div className="playlist-upload-container">
             <div className="playlist-upload">
                 <button
@@ -68,5 +70,6 @@ export default function PlaylistComponent() {
             </ModalComponent>
             <GetUserPlaylists />
         </div>
+    </>
     );
 }

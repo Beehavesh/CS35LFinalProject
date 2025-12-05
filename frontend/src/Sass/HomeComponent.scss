@@ -10,6 +10,26 @@
         animation: colorChange 5s infinite alternate; 
  }
 
+ // 3D MODEL-RELATED
+
+.model-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  touch-action: pan-y;
+  z-index: -1; /* behind everything */
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+// 3D MODEL-RELATED - END 
+
  h2 {
     text-align: center;
  }

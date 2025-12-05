@@ -35,6 +35,20 @@ export default function HomeComponent() {
     };
     return (
         <div>
+              <div className = "model-viewer">
+                           <model-viewer
+                           id="reveal"
+                           loading="eager"
+                           auto-rotate
+   //no poster for the homepage
+                           tone-mapping="aces"
+                           src="/motif3dreal.gltf"
+                           environment-image="neutral"
+                           shadow-intensity="1"
+                           alt="3d model of motif logo"
+                           ></model-viewer>
+                   </div>
+       
             <h1 className="heading1"> MOTIF. </h1>
             <h2> Jobs curated just for your unique music taste. </h2>
             <GetJobPosts/>

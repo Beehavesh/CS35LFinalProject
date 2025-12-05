@@ -10,7 +10,8 @@ const ModalComponent = ({
   children, 
   onSubmit,
   submitLabel = "Submit",
-  disableSubmit = false,  }) => {
+  disableSubmit = false, 
+}) => {
   const footer = onSubmit 
   ? [
       <button
@@ -21,6 +22,7 @@ const ModalComponent = ({
           {submitLabel}
       </button>
   ] : null ;
+  
   return (
     <>
       <Modal
@@ -35,16 +37,12 @@ const ModalComponent = ({
         }}
         styles={{
         title: { color: 'white', fontFamily: 'Gudea', fontSize: 30},
-        root: { color: 'white', backgroundColor: '#0E0E0E' },
         content: { fontFamily: 'serif', backgroundColor: '#0E0E0E', padding: 24 },
         container: { backgroundColor: '#0E0E0E', borderRadius: 30, borderColor: 'purple'},
         header: { color: 'white', colorIcon: 'white' },
         body: { color: 'white', fontSize: 16 },
         footer: { display: 'flex', justifyContent: 'center' },
-        closeIcon: { // Styles specifically for the close icon
-          color: 'red',
-          fontSize: '20px',
-        },
+        
   }}
       >
         {children}
