@@ -62,6 +62,8 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
 app.patch("/api/posts", verifyToken, async (req, res) => {
 
   try {
+    console.log("Post id: " + req.body.pid)
+    console.log("User id: " + req.body.uid)
     const like = await Post.updateOne(
       { _id: req.body.pid },
       { $addToSet: { likedUsers: req.body.uid } }
