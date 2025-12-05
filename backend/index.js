@@ -6,6 +6,7 @@ import cors from "cors";
 import Post from "./models/Post.js";
 import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
+import userRoutes from "./Routes/users.js";
 import postRoutes from "./Routes/posts.js";
 import playlistRoutes from "./Routes/playlist.js";
 import verifyToken from "./middleware/auth.js";
@@ -23,7 +24,6 @@ app.use("/api/users", userRoutes);
 
 
 // Render backend
-app.get("/", (req, res) => {
 app.get("/", (req, res) => {
   res.send("Backend running");
 });
