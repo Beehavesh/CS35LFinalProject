@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+
     .all-post-item {
         width: 80%;
         background-color: black;
@@ -11,6 +12,8 @@
         border-radius: 5px;
         margin: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem; 
+        
         h1 {
             padding: 0.2rem; 
             padding-left: 0.5rem; 

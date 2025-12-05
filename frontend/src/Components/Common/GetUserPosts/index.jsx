@@ -67,7 +67,12 @@ function PostWithApplicants({ post }) {
 
   return (
     <div className="user-post-item">
-      <p className="job-text">{post.text}</p>
+                    <h1>{post.text}</h1>
+                    <h2>{post.company}</h2>
+                    <h3>{post.description}</h3>
+                {post.tags.map((tag, index) => (
+                    <p className="wrapped" key={index}>{tag.genre}</p>
+                    ))}   
 
       <h3>Applicants:</h3>
 

@@ -25,9 +25,9 @@
             height: 50px;
             text-align: center;
             color: rgba(84, 84, 84, 0.89);
-            background-color: whitesmoke;
+            background-color: black;
             outline: none;
-            border: 1px solid #b7b7b7;
+            border: 1px solid #4E64EB;
             border-radius: 30px;
             cursor: pointer;
             padding: 15px;
@@ -35,7 +35,7 @@
             font-size: 14px;
             font-family: system-ui, sans-serif;
             &:hover {
-                background-color: #b7b7b7;
+                background-color: #0E0E0E;
             }
         }
     }

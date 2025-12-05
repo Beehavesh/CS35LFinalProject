@@ -47,7 +47,12 @@ export default function GetJobPosts() {
         <div className="job-posts-container">
             {jobPosts.map((post) => (
                 <div key={post._id} className="job-post-item">
-                    <p>{post.text}</p>
+                    <h1>{post.text}</h1>
+                    <h2>{post.company}</h2>
+                    <h3>{post.description}</h3>
+                {post.tags.map((tag, index) => (
+                    <p className="wrapped" key={index}>{tag.genre}</p>
+                    ))}   
                     <LikeButton
                     likedUsers={post.likedUsers}
                     setLikedUsers={(newLikes) => {

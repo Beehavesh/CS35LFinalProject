@@ -7,10 +7,10 @@
     .post-status{
         width: 80%;
         height: 120px;
-        background-color: whitesmoke;
+        background-color: black;
         margin-top: 30px;
         margin-bottom: 30px;
-        border: 1px solid #b7b7b7;
+        border: 1px solid #4E64EB;
         border-radius: 7px;
         display: flex;
         justify-content: space-around;
@@ -20,9 +20,9 @@
             height: 50px;
             text-align: left;
             color: rgba(84, 84, 84, 0.89);
-            background-color: whitesmoke;
+            background-color: black;
             outline: none;
-            border: 1px solid #b7b7b7;
+            border: 1px solid #4E64EB;
             border-radius: 30px;
             margin-left: -30px;
             cursor: pointer;
@@ -31,7 +31,7 @@
             font-size: 14px;
             font-family: system-ui, sans-serif;
             &:hover {
-                background-color: #b7b7b7;
+                background-color: #0E0E0E;
             }
         }
     }
