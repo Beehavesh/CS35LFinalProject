@@ -3,9 +3,10 @@ import "./index.scss";
 import { getAuth } from "firebase/auth";
 import LikeButton from '../LikeButton/index.jsx';
 
-const getAllPosts = async (setAllPosts) => {
+const getJobPosts = async (setJobPosts) => {
     try {
         const auth = getAuth();
+        const userId = auth.currentUser.uid;
 
         if (!auth.currentUser) {
             console.log("User not logged in yet");
@@ -15,7 +16,7 @@ const getAllPosts = async (setAllPosts) => {
         const token = await auth.currentUser.getIdToken();
 
         const response = await fetch(
-            "https://cs35lfinalproject.onrender.com/api/posts",
+            `https://cs35lfinalproject.onrender.com/api/posts/matching/${userId}`,
             {
                 method: "GET",
                 headers: {
@@ -24,7 +25,7 @@ const getAllPosts = async (setAllPosts) => {
             }
         );
 
-        if (!response.ok) throw new Error("Failed to fetch posts");
+        if (!response.ok) throw new Error("Failed to fetch job posts");
 
         const data = await response.json();
         setAllPosts(data);
@@ -33,18 +34,18 @@ const getAllPosts = async (setAllPosts) => {
     }
 };
 
-export default function GetPosts() {
-    const [allPosts, setAllPosts] = useState([]);
+export default function GetJobPosts() {
+    const [jobPosts, setJobPosts] = useState([]);
 
     useEffect(() => {
-        getAllPosts(setAllPosts);
+        getJobPosts(setJobPosts);
     }, []);
 
 
     return (
-        <div className="posts-container">
-            {allPosts.map((post) => (
-                <div key={post._id} className="post-item">
+        <div className="job-posts-container">
+            {jobPosts.map((post) => (
+                <div key={post._id} className="job-post-item">
                     <p>{post.text}</p>
                     <LikeButton likedUsers={post.likedUsers} postID={post._id}/>
                 </div>
