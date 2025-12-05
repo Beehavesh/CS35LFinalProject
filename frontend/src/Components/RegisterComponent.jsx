@@ -35,7 +35,7 @@ export default function RegisterComponent() {
         }
     };
     */
-   const saveUserDataDB = async(email, username, photoUrl) =>{
+   const saveUserDataDB = async(userData) =>{
     const auth = getAuth();
     const userId = auth.currentUser.uid; //this is the firebase uid
     const token = await auth.currentUser.getIdToken();
@@ -44,7 +44,7 @@ export default function RegisterComponent() {
         method: "POST",
         headers:{
             "Content-Type": "application/json",
-            "x-user-id": userId,
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(userData),
     });
@@ -135,7 +135,7 @@ export default function RegisterComponent() {
         <div className="right-side">
         <div className = "login-wrapper">
             <div className = "login-divider">
-                <h1 className="heading1">Sign up</h1>
+                <h1 className="heading1">SIGN UP</h1>
                 <p className="subheading1">Welcome! Enter your info to create an account.</p>
                 <div className ="auth-inputs">
                     <input onChange={(event) => {

@@ -6,6 +6,7 @@ import cors from "cors";
 import Post from "./models/Post.js";
 import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
+import userRoutes from "./Routes/users.js";
 import postRoutes from "./Routes/posts.js";
 import playlistRoutes from "./Routes/playlist.js";
 import verifyToken from "./middleware/auth.js";
@@ -17,7 +18,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/posts", postRoutes);
-app.use("/api", playlistRoutes);
+//app.use("/api", likeRoutes);
+app.use("/api/playlist", playlistRoutes);
+app.use("/api/users", userRoutes);
+
 
 // Render backend
 app.get("/", (req, res) => {
@@ -27,8 +31,7 @@ app.get("/", (req, res) => {
 
 //storing User info into mongo DB
 app.post("/api/auth", verifyToken, async (req, res) =>{
-  console.log("testing if we correctly hit the api auth route");
-
+  console.log("we hit api/auth");
   const uid = req.user.uid;
   const{ email, username, photoUrl } = req.body;
 
