@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import motifv2 from '../assets/motif-v2.svg';
-import motifChrome from '../assets/motif-chrome.svg';
+import motifv2 from '../Assets/motif-v2.svg';
+import motifChrome from '../Assets/motif-chrome.svg';
 import { RegisterAPI, GoogleSignInAPI } from '../api/AuthAPI';
 import GoogleButton from 'react-google-button';
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ export default function RegisterComponent() {
         }
     };
     */
-   const saveUserDataDB = async(userData) =>{
+   const saveUserDataDB = async(email, username, photoUrl) =>{
     const auth = getAuth();
     const userId = auth.currentUser.uid; //this is the firebase uid
     const token = await auth.currentUser.getIdToken();
@@ -44,7 +44,7 @@ export default function RegisterComponent() {
         method: "POST",
         headers:{
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "x-user-id": userId,
         },
         body: JSON.stringify(userData),
     });
@@ -91,6 +91,10 @@ export default function RegisterComponent() {
         }
     };
     return (
+<<<<<<< HEAD
+        <div className = "login-wrapper ">
+            <img src = {motifv2} className = "linkedoutlogo"/>
+=======
         <>
 
     <div className="entire-page-container">
@@ -134,8 +138,9 @@ export default function RegisterComponent() {
 
         <div className="right-side">
         <div className = "login-wrapper">
+>>>>>>> dfbc7a63546955e42605eed7bd75cdbb5cc59086
             <div className = "login-divider">
-                <h1 className="heading1">SIGN UP</h1>
+                <h1 className="heading1">Sign up</h1>
                 <p className="subheading1">Welcome! Enter your info to create an account.</p>
                 <div className ="auth-inputs">
                     <input onChange={(event) => {
@@ -175,9 +180,12 @@ export default function RegisterComponent() {
             <p className="signup-text">Already have an account? <span className="signup-link" onClick={() => navigate("/")}>Sign in</span></p>
             </div>
         </div>
+<<<<<<< HEAD
+=======
         </div>
 
      </div>
     </>
+>>>>>>> dfbc7a63546955e42605eed7bd75cdbb5cc59086
     );
 };
