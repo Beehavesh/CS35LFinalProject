@@ -28,7 +28,7 @@ connectDB();
 
 // ==== ROUTE REGISTRATION ====
 app.use("/api/posts", postRoutes);
-app.use("/api/playlist", playlistRoutes);
+app.use("/api", playlistRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/likes", likesRoutes);
 
