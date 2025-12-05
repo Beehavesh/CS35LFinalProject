@@ -7,6 +7,7 @@ import Post from "./models/Post.js";
 import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
 import Like from "./models/Like.js";
+import postRoutes from "./Routes/posts.js";
 import likeRoutes from "./Routes/likes.js";
 import playlistRoutes from "./Routes/playlist.js";
 import verifyToken from "./middleware/auth.js";
@@ -17,6 +18,7 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/posts", postRoutes);
 app.use("/api", likeRoutes);
 app.use("/api", playlistRoutes);
 
