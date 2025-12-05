@@ -46,11 +46,7 @@ export const getPostsMatchingUserTags = async (req, res) => {
     const userId = req.params.userId;
 
     // 1. Fetch all playlists
-    console.log("REQ PARAM userId:", req.params.userId);
-    console.log("REQ HEADER userId:", req.headers["x-user-id"]);
-    console.log("REQ QUERY userId:", req.query.userId);
     const playlists = await Playlist.find({ userId });
-    console.log("Found playlists:", playlists);
 
     // 2. Flatten user genre tags into an array
     const userTags = [
@@ -63,7 +59,7 @@ export const getPostsMatchingUserTags = async (req, res) => {
 
     // 3. Match job posts where tags.genre overlaps
     const jobs = await Post.find({
-      tags: { $in: userTags }
+      "tags.genre": { $in: userTags }
     });
     console.log(jobs);
     
