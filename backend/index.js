@@ -1,20 +1,15 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
-import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
 import Like from "./models/Like.js";
 import likeRoutes from "./Routes/likes.js";
 import playlistRoutes from "./Routes/playlist.js";
-
-
-const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+import { verifyToken } from "./middleware/auth.js";
 
 const app = express();
 app.use(cors());
@@ -22,41 +17,9 @@ app.use(express.json());
 app.use("/api", likeRoutes);
 app.use("/api", playlistRoutes);
 
-// Initialize Firebase admin
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-// Connect to MongoDB
-const MONGO_URI = process.env.MONGO_URI 
-mongoose.connect(MONGO_URI, {
-  dbName: "linkedout",
-});
-
-// Middleware to verify Firebase token
-
-async function verifyToken(req, res, next) {
-  const token = req.headers.authorization?.split(" ")[1];
-
-  try {
-    const decoded = await admin.auth().verifyIdToken(token);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(401).json({ error: "Invalid token" });
-  }
-}
-
-
-// Render backend
-app.get("/", (req, res) => {
-  res.send("Backend running");
-});
-
 // Create a new post
-app.post("/api/jobposts", verifyToken, async (req, res) => {
-  const post = await Jobpost.create({
+app.post("/api/posts", verifyToken, async (req, res) => {
+  const post = await Post.create({
     userId: req.user.uid,
     text: req.body.text,
     tags: req.body.tags, // check if it should be req.body or something else
@@ -66,8 +29,8 @@ app.post("/api/jobposts", verifyToken, async (req, res) => {
 });
 
 // Get all posts
-app.get("/api/jobposts", verifyToken, async (req, res) => {
-  const posts = await Jobpost.find().sort({ timestamp: -1 });
+app.get("/api/posts", verifyToken, async (req, res) => {
+  const posts = await Post.find().sort({ timestamp: -1 });
   res.json(posts);
 });
 
