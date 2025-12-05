@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import admin from "firebase-admin";
 
 // Parse service account key for Firebase admin
