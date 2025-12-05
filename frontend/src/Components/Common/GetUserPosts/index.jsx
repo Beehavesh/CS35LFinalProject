@@ -35,7 +35,6 @@ const getUserPosts = async (setUserPosts) => {
   }
 };
 
-<<<<<<< HEAD
 // Fetch applicants for a specific post
 const getApplicants = async (postId, setApplicants) => {
   try {
@@ -109,24 +108,3 @@ export default function GetUserPosts() {
     </div>
   );
 }
-=======
-export default function GetUserPosts() {
-    const [userPosts, setUserPosts] = useState([]);
-
-    useEffect(() => {
-        getUserPosts(setUserPosts);
-    }, []);
-
-
-    return (
-        <div className="user-posts-container">
-                    {userPosts.map((post) => (
-                        <div key={post._id} className="user-post-item">
-                            <p>{post.text}</p>
-                            <LikeButton likedUsers={post.likedUsers} postID={post._id}/>
-                        </div>
-                    ))}
-                </div>
-    );
-}
->>>>>>> parent of 613b7a8 (Implemented system to view applicants in job post)
