@@ -1,50 +1,28 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
-import admin from "firebase-admin";
 import Post from "./models/Post.js";
+import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
+// import Like from "./models/Like.js";
+// import likeRoutes from "./Routes/likes.js";
+import playlistRoutes from "./Routes/playlist.js";
+import verifyToken from "./middleware/auth.js";
+import connectDB from "./config/mongodb.js";
 
-
-const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+connectDB();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// Initialize Firebase admin
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-// Connect to MongoDB
-const MONGO_URI = process.env.MONGO_URI 
-mongoose.connect(MONGO_URI, {
-  dbName: "linkedout",
-});
-
-// Middleware to verify Firebase token
-
-async function verifyToken(req, res, next) {
-  const token = req.headers.authorization?.split(" ")[1];
-
-  try {
-    const decoded = await admin.auth().verifyIdToken(token);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(401).json({ error: "Invalid token" });
-  }
-}
-
+app.use("/api/posts", postRoutes);
+app.use("/api", likeRoutes);
+app.use("/api", playlistRoutes);
 
 // Render backend
-app.get("/", (req, res) => {
+app.get("/", (res) => {
   res.send("Backend running");
 });
 
@@ -53,8 +31,9 @@ app.post("/api/posts", verifyToken, async (req, res) => {
   const post = await Post.create({
     userId: req.user.uid,
     text: req.body.text,
+    tags: req.body.tags, // check if it should be req.body or something else
     timestamp: Date.now()
-  });
+  }); 
   res.json(post);
 });
 
@@ -62,6 +41,22 @@ app.post("/api/posts", verifyToken, async (req, res) => {
 app.get("/api/posts", verifyToken, async (req, res) => {
   const posts = await Post.find().sort({ timestamp: -1 });
   res.json(posts);
+});
+
+app.post("/api/like", async (req, res) => {
+    try {
+        const { postID, likedUserIDs } = req.body;
+
+        const like = await Like.create({
+            postID,
+            likedUserIDs,
+        });
+
+        res.status(201).json(like);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to create likes" });
+    }
 });
 
 //storing User info into mongo DB
@@ -96,34 +91,29 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
     }
 });
 
+
 // Like a post
-app.put("/api/likes/:postID", verifyToken, async (req, res) => {
-  console.log("Liking a post");
-
+app.patch("/api/posts", verifyToken, async (req, res) => {
+  console.log("does this code get executed?");
+  /*
   newLikeUserID = req.body.userID;
-  pID = req.body.postID;
-
   if (!newLikeUserID) return res.status(401).json({ error: "Invalid user ID while trying to like" });
-
   try {
     const updatedLikes = await Like.findOneAndUpdate(
-      { postID: pID }, // Filter
-      { $push: { likedUserIDs: newLikeUserID } }, // Update
-      { new: true } // Option: Return the updated document instead of the old one
+      { postID: pID },
+      { $push: { likedUserIDs: newLikeUserID } },
+      { new: true } 
     );
-
     if (!updatedLikes) {
       return res.status(404).json({ error: 'Posts not found while trying to like' });
     }
-
     res.json({likes: updatedLikes});
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+  */
 });
-
 
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
 
