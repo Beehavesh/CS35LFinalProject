@@ -93,3 +93,25 @@ export const patchLikes = async (req, res) => {
     res.status(500).json({ error: "Failed to like post" });
   }
 };
+
+// Get applicants (users who liked) for a post
+export const getLikes = async (req, res) => {
+  try {
+    const { pid } = req.params;
+
+    // 1. Find post
+    const post = await Post.findById(pid);
+    if (!post) return res.status(404).json({ error: "Post not found" });
+
+    // 2. Query Users collection by firebaseUID
+    const applicants = await User.find(
+      { firebaseUID: { $in: post.likedUsers } },  // matching UIDs
+      "firebaseUID username"         // fields to return
+    );
+
+    res.json({ applicants });
+  } catch (err) {
+    console.error("GET APPLICANTS ERROR:", err);
+    res.status(500).json({ error: "Failed to fetch applicants" });
+  }
+};
