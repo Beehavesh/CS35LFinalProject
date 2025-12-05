@@ -11,7 +11,7 @@ export default function JobpostComponent() {
             <h1 className='heading1'> JOB POSTING </h1>
             <h2> Where <span style={{color:"#4E64EB"}}> employers </span> like you can post jobs targeting potential new hires by <span style={{color:"#4E64EB"}}> music taste</span>.</h2>
             <PostStatus />
-            <GetAllPosts /> 
+            <GetUserPosts /> 
         </div>
     );
 }
