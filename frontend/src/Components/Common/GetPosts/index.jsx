@@ -45,6 +45,8 @@ export default function GetPosts() {
             {allPosts.map((post) => (
                 <div key={post._id} className="post-item">
                     <p>{post.text}</p>
+                    <p>{post.company}</p>
+                    <p>{post.description}</p>
                     <LikeButton postID={post._id}/>
                 </div>
             ))}

@@ -9,8 +9,9 @@ const initialJobTags = [
     { id: 0, genre: 'classical', selected: false},
     { id: 1, genre: 'rock', selected: false},
     { id: 2, genre: 'country', selected: false},
+    { id: 3, genre: 'pop', selected: false},
+    { id: 4, genre: 'EDM', selected: false}
 ]
-
 
 
 const createLikes = async (token, postID) => {
@@ -34,14 +35,28 @@ const createLikes = async (token, postID) => {
 
 export default function PostStatus() {
     const [modalOpen, setModalOpen] = useState(false);
-    const [postStatus, setPostStatus] = useState('');
+    const [jobRole, setJobRole] = useState('');
+    const [companyName, setCompanyName] = useState('');
+    const [jobDescription, setJobDescription] = useState('');
     const [jobTags, setJobTags] = useState(initialJobTags);
     const [userJobTags, setUserJobTags] = useState(initialJobTags);
+
+const toggleSelection = (id) => {
+
+  setJobTags(prev => {
+    const updated = prev.map(tag =>
+      tag.id === id ? { ...tag, selected: !tag.selected } : tag
+    );
+    setUserJobTags(updated.filter(tag => tag.selected));
+    return updated;
+  });
+};
+     
     
     const sendStatus = async () => { 
         const auth = getAuth(); 
         const token = await auth.currentUser.getIdToken();
-                if (!postStatus.trim()) return;
+                if (!jobRole.trim()) return;
 
         try {
             const response = await fetch("https://cs35lfinalproject.onrender.com/api/posts", {
@@ -51,13 +66,17 @@ export default function PostStatus() {
                     "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    text: postStatus,
+                    text: jobRole,
                     tags: userJobTags, //this should be set upon submit
+                    description: jobDescription,
+
                 })
             });
             if (!response.ok) throw new Error("Failed to post");
             toast.success("Posted!");
-            setPostStatus("");
+            setJobRole("");
+            setCompanyName("");
+            setJobDescription("");
             setModalOpen(false);
 
             const data = await response.json();
@@ -81,51 +100,72 @@ export default function PostStatus() {
                     className="open-post-modal"
                     onClick={() => setModalOpen(true)}
                 >
-                    Start a Post
+                    Post a Job Advertisement
                 </button>
             </div>
             <ModalComponent
                 modalOpen={modalOpen}
                 setModalOpen={setModalOpen}
-                title="Create a Post"
+                title="Create a Job Post"
                 onSubmit={sendStatus}
-                submitLabel="Post"
-                disableSubmit={postStatus.trim().length === 0}
+                submitLabel="Post Now"
+                disableSubmit={jobRole.trim().length === 0}
             >
                 <input
                     type="text"
-                    placeholder="What's on your mind?"
+                    placeholder="Job Role"
                     className="post-input"
-                    onChange={(e) => setPostStatus(e.target.value)}
-                    value={postStatus}
+                    onChange={(e) => setJobRole(e.target.value)}
+                    value={jobRole}
+                />
+
+                <input 
+                    type="text"
+                    placeholder="Company Name"
+                    className="post-input"
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    value={companyName}
+                />
+
+                <input 
+                    type="text"
+                    placeholder="Short Role Description"
+                    className="post-input"
+                    onChange={(e) => setJobDescription(e.target.value)}
+                    value={jobDescription}
                 />
 
 
-                <h1>Music Taste Tags</h1>
-                <ul>
+                <h4>Music Taste Tags</h4>
 
-                {userJobTags.map(userJobTag => (
-                    <li key={userJobTag.id}>
-                        {userJobTag.genre}
-                    </li>
-                ))}
-
-                </ul>
-
-                <ul>
+               <div style={{ display: 'flex', gap: '8px' }}>
                 {jobTags.map(jobTag => (
-                    <li key={jobTag.id}>
-                        {jobTag.genre}{' '}
-                        <button onClick={() => {
-                        setUserJobTags(userJobTags.filter(a => //important: set the USER JOB TAG ARRAY, NOT the rendered one.
+                    <div key={jobTag.id}>
+                        <button 
+                        className={`button ${jobTag.selected ? 'clicked' : ''}`}
+                        onClick={() => {
+                        /*setUserJobTags(userJobTags.filter(a => //important: set the USER JOB TAG ARRAY, NOT the rendered one.
                             a.id !== jobTag.id
                             )
-                        );
-                        }}>
-                        Remove 
+                        );*/
+                        {toggleSelection(jobTag.id)}
+                        
+                        } }>
+                        {jobTag.genre} 
                         </button> 
+                    </div>
+                    
+                ))}
+                </div>
+
+               <ul>
+                <p> This Job Seeks the Following Music Tastes: </p>
+                  {userJobTags.map(jobTag => (
+                    <li key={jobTag.id}>
+                        {jobTag.genre}
                     </li>
                 ))}
+
                 </ul>
             </ModalComponent>
         </div>);

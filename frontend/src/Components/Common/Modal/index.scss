@@ -1,9 +1,76 @@
+.modalStyle {
+   background-color: #0E0E0E;
+   font-family: 'Gudea';
+}
+
+.ant-modal-close-icon {
+    padding: 0.75em; 
+    border-radius: 100%;
+    background-color: #7800EB; 
+    color: #B0A3EB;
+    font-size: 0.7rem;
+      /* this is the only way to override the other styles, the docs r REALLY confusing.... */
+
+    &:hover {
+        scale: 1.35; 
+        color: #4E64EB;
+        background-color: #B0A3EB;
+    }
+}
+
+.modalContainer {
+    color: black; 
+    background-color: #0E0E0E; 
+    border: 0.25rem solid #B0A3EB; 
+}
+
 .post-input{
     border: none;
-    background-color: white;
+    background-color: #0E0E0E;
     outline: none;
-    color: black;
+    color: white;
     font-size: 16px;
-    font-family: papyrus;
+    font-family: "Gudea";
     width: 100%;
+    border: 0.025rem solid #B0A3EB;
+} //this is for the input fields
+
+button {
+color: #B0A3EB; 
+  border-radius: 70px; 
+  border-width: 0.25rem; 
+  border-color: #B0A3EB;
+  background-color: black; 
+  padding: 0.45em;
+
+  &:hover{
+    border-color: #89C8EA;
+    color: #89C8EA;
+  }
+
+
+}
+
+button.clicked{
+    border-color: #4E64EB;
+    color: #4E64EB;
+}
+
+.myClose {
+    color: white; 
+}
+
+.post-button {
+    color: #006BEB; 
+  border-radius: 70px; 
+  border-width: 0.25rem; 
+  border-color: #006BEB;
+  background-color: black; 
+  padding: 0.45em;
+
+  &:hover{
+    border-color: #4E64EB; 
+    color: #4E64EB; 
+  }
+
 }

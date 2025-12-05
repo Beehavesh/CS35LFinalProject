@@ -4,7 +4,6 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import Post from "./models/Post.js";
-import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
 import Like from "./models/Like.js";
 import likeRoutes from "./Routes/likes.js";
@@ -30,7 +29,7 @@ app.post("/api/posts", verifyToken, async (req, res) => {
   const post = await Post.create({
     userId: req.user.uid,
     text: req.body.text,
-    tags: req.body.tags, // check if it should be req.body or something else
+    // tags: req.body.tags, check if it should be req.body or something else
     timestamp: Date.now()
   }); 
   res.json(post);

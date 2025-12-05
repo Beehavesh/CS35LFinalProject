@@ -5,10 +5,12 @@ const router = express.Router();
 
 router.post("/post", async (req, res) => {
     try {
-        const { text, userId, tags } = req.body;
+        const { text, company, description, userId, tags } = req.body;
 
         const post = await Post.create({
             text,
+            company,
+            description,
             userId,
             tags,
             createdAt: new Date(),
