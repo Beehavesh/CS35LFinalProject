@@ -25,3 +25,33 @@ export const getAllPosts = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Get job posts matching user's playlist tags
+export const getPostsMatchingUserTags = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // 1. Fetch all playlists
+    const playlists = await Playlist.find({ userId });
+
+    // 2. Flatten user genre tags into an array
+    const userTags = [
+      ...new Set(
+        playlists.flatMap(p => p.genreTags.map(t => t.toLowerCase()))
+      ),
+    ];
+
+    console.log("User tags:", userTags);
+
+    // 3. Match job posts where tags.genre overlaps
+    const jobs = await Post.find({
+      "tags.genre": { $in: userTags }
+    });
+
+    res.json(jobs);
+
+  } catch (err) {
+    console.error("MATCHING JOBS ERR:", err);
+    res.status(500).json({ error: err.message });
+  }
+};

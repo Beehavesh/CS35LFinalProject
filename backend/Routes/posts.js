@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post("/", verifyToken, createPost);
 router.get("/", verifyToken, getAllPosts);
+router.get("/matching/:userId", getJobsMatchingUserTags);
 
 router.patch("/post", async (req, res) => {
     try {
