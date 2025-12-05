@@ -11,5 +11,4 @@ router.get("/matching/:userId", getPostsMatchingUserTags);
 router.patch("/:id", verifyToken, patchLikes); 
 router.get("/:pid/likes", verifyToken, getLikes);
 
-
 export default router;
