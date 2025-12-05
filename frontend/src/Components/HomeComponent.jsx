@@ -35,9 +35,9 @@ export default function HomeComponent() {
     };
     return (
         <div>
-              <div className = "model-viewer">
+              <div className = "model-viewer-for-home">
                            <model-viewer
-                           id="reveal"
+                           id="homepageReveal"
                            loading="eager"
                            auto-rotate
    //no poster for the homepage
