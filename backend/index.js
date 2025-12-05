@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
-import authRoutes from "./Routes/users.js";
+import userRoutes from "./Routes/users.js";
 
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-//import admin from "firebase-admin";
+import admin from "firebase-admin";
 import Post from "./models/Post.js";
 import User from "./models/User.js";
 import Like from "./models/Like.js";
@@ -13,8 +13,8 @@ import Like from "./models/Like.js";
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/api/auth", authRoutes);
-/*const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+app.use("/api/users", userRoutes);
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 
 // Initialize Firebase admin
@@ -22,7 +22,7 @@ app.use("/api/auth", authRoutes);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-*/
+
 
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI 

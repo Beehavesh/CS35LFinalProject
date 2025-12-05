@@ -15,7 +15,7 @@ export default function ProfileComponent() {
     useEffect(()=>{
         if(!firebaseUID)
             return;
-        fetch(`http://localhost:3001/api/auth/${firebaseUID}`)
+        fetch(`http://localhost:5001/api/users/${firebaseUID}`)
         .then(res => res.json())
         .then(data => saveUserDataDB(data))
         .catch(err => console.error(err));
