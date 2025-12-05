@@ -46,7 +46,9 @@ export default function GetUserPosts() {
         <div className="user-posts-container">
                     {userPosts.map((post) => (
                         <div key={post._id} className="user-post-item">
-                            <p>{post.text}</p>
+                            <h1>{post.text}</h1>
+                            <h3>{post.company}</h3>
+                            <p>{post.description}</p>
                             <LikeButton likedUsers={post.likedUsers} postID={post._id}/>
                         </div>
                     ))}

@@ -32,7 +32,6 @@ const ModalComponent = ({
         footer={footer}
         classNames={{
           body: 'modalStyle',
-          close: 'closeButton',
         }}
         styles={{
         title: { color: 'white', fontFamily: 'Gudea', fontSize: 30},

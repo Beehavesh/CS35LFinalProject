@@ -67,23 +67,20 @@ const toggleSelection = (id) => {
                 },
                 body: JSON.stringify({
                     text: jobRole,
-                    tags: userJobTags, //this should be set upon submit
                     company: companyName,
                     description: jobDescription,
+                    tags: userJobTags, //this should be set upon submit
 
                 })
             });
+        
             if (!response.ok) throw new Error("Failed to post");
             toast.success("Posted!");
             setJobRole("");
             setCompanyName("");
             setJobDescription("");
             setModalOpen(false);
-            console.log(data);
 
-            //const data = await response.json();
-            // const newPostId = data._id; 
-            // console.log(data);
 
         } catch (err) {
             console.log(err);
