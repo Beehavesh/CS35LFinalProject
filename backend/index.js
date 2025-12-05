@@ -4,8 +4,6 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import User from "./models/User.js";
-// import Like from "./models/Like.js";
-// import likeRoutes from "./Routes/likes.js";
 import postRoutes from "./Routes/posts.js";
 import playlistRoutes from "./Routes/playlist.js";
 import verifyToken from "./middleware/auth.js";
@@ -17,7 +15,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/posts", postRoutes);
-//app.use("/api", likeRoutes);
 app.use("/api", playlistRoutes);
 
 // Render backend
@@ -25,21 +22,6 @@ app.get("/", (req, res) => {
   res.send("Backend running");
 });
 
-app.post("/api/like", async (req, res) => {
-    try {
-        const { postID, likedUserIDs } = req.body;
-
-        const like = await Like.create({
-            postID,
-            likedUserIDs,
-        });
-
-        res.status(201).json(like);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Failed to create likes" });
-    }
-});
 
 //storing User info into mongo DB
 app.post("/api/auth", verifyToken, async (req, res) =>{
@@ -76,25 +58,17 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
 
 // Like a post
 app.patch("/api/posts", verifyToken, async (req, res) => {
-  console.log("does this code get executed?");
-  /*
-  newLikeUserID = req.body.userID;
-  if (!newLikeUserID) return res.status(401).json({ error: "Invalid user ID while trying to like" });
+
   try {
-    const updatedLikes = await Like.findOneAndUpdate(
-      { postID: pID },
-      { $push: { likedUserIDs: newLikeUserID } },
-      { new: true } 
-    );
-    if (!updatedLikes) {
-      return res.status(404).json({ error: 'Posts not found while trying to like' });
-    }
-    res.json({likes: updatedLikes});
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    const like = await Post.updateOne(
+      { _id: req.body.pid },
+      { $addToSet: { likedUsers: req.body.uid } }
+    )
+    res.status(201).json(like);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to like post" });
   }
-  */
 });
 
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
