@@ -9,15 +9,23 @@ export default function PlaylistComponent() {
     const [modalOpen, setModalOpen] = useState(false);
     const [form] = Form.useForm(); 
     const handleSubmit = async () => {
-        const auth = getAuth();
-        const token = await auth.currentUser.getIdToken();
+    const auth = getAuth();
+    const token = await auth.currentUser.getIdToken();
 
+    try {
+    await form.validateFields();
+    } catch (err) {
+    console.error("Validation failed, not submitting", err);
+    return;
+    }
+    
     const values = form.getFieldsValue();
 
     const payload = {
         userId: auth.currentUser.uid,
         playlistTitle: values.playlistTitle,
         songs: values.songs,
+        genreTags: values.genreTags || []
     };
 
     console.log("Submitting payload:", payload);

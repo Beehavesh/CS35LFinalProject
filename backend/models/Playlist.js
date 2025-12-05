@@ -12,7 +12,8 @@ const playlistSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   playlistTitle: { type: String, required: true },
   songs: { type: [songSchema], validate: v => v.length > 0 },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  genreTags: [String] 
 });
 
 export default mongoose.model("Playlist", playlistSchema);
