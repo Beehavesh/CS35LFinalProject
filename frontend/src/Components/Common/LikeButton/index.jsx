@@ -2,21 +2,17 @@ import React, { useMemo, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
 import "./index.scss";
-import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from "react-icons/ai";
-import { BsFillHandThumbsUpFill, BsHandThumbsUp } from "react-icons/bs";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 
 
 // add a like to post
-const addLike = async (likedUsers, userID, postID) => {
-
-  console.log("Adding a like with: ");
-  console.log("userID: " + userID);
-  console.log("postID: " + postID);
+const addLike = async (likedUsers, postID) => {
 
   try {
     const auth = getAuth();
     const token = await auth.currentUser.getIdToken();
+    const userID = auth.currentUser.uid; //this is the firebase uid
 
     const response = await fetch(`https://cs35lfinalproject.onrender.com/api/posts`, {
       method: "PATCH",
@@ -31,8 +27,9 @@ const addLike = async (likedUsers, userID, postID) => {
     });
     if (!response.ok) throw new Error("Failed to like this post");
 
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
+    toast.success("You liked this post!");
 
   } catch (err) {
     console.log(err);
@@ -40,11 +37,11 @@ const addLike = async (likedUsers, userID, postID) => {
   
 }
 
-export default function LikeButton({ likedUsers, userID, postID }) {
+export default function LikeButton({ likedUsers, postID }) {
 
   const handleLike = () => {
     // console.log("like button clicked");
-    addLike(likedUsers, userID, postID);
+    addLike(likedUsers, postID);
   }
   
   let likeNumber = 0;
