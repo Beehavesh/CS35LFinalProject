@@ -3,9 +3,7 @@ import { Form, Input, Button, Space, Card } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { getAuth } from "firebase/auth";
 
-const FormComponent = () => {
-  const [form] = Form.useForm();
-
+const FormComponent = ({form}) => {
   return (
     <Card title="Create New Playlist" style={{ maxWidth: 600, margin: "auto" }}>
       <Form

@@ -1,22 +1,22 @@
 import express from "express";
-import Post from "../models/Post.js"; 
+import verifyToken from "../middleware/auth.js";
+import { createPost, getAllPosts } from "../Controllers/postController.js";
 
 const router = express.Router();
 
-router.post("/post", async (req, res) => {
+router.post("/", verifyToken, createPost);
+router.get("/", verifyToken, getAllPosts);
+
+router.patch("/post", async (req, res) => {
     try {
-        const { text, userId } = req.body;
-
-        const post = await Post.create({
-            text,
-            userId,
-            createdAt: new Date(),
-        });
-
-        res.status(201).json(post);
+        const like = await Post.updateOne(
+            {_id: req.body.pid},
+            {$addToSet: {likedUsers: req.body.uid}}
+        )
+        res.status(201).json(like);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: "Failed to create post" });
+        res.status(500).json({ error: "Failed to like post" });
     }
 });
 
