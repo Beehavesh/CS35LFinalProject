@@ -68,6 +68,7 @@ const toggleSelection = (id) => {
                 body: JSON.stringify({
                     text: jobRole,
                     tags: userJobTags, //this should be set upon submit
+                    company: companyName,
                     description: jobDescription,
 
                 })

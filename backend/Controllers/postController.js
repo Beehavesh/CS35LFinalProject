@@ -7,6 +7,8 @@ export const createPost = async (req, res) => {
     const post = await Post.create({
       userId: req.user.uid,       // comes from verifyToken middleware
       text: req.body.text,
+      company: req.body.company,
+      description: req.body.description,
       tags: req.body.tags,
       timestamp: Date.now()
     });
