@@ -1,6 +1,5 @@
 import Post from "../models/Post.js";
 import Playlist from "../models/Playlist.js";
-import { exp } from "three/tsl";
 
 // Create a new post
 export const createPost = async (req, res) => {
