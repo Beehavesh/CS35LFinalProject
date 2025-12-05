@@ -70,11 +70,22 @@ export const getPostsMatchingUserTags = async (req, res) => {
 // Like a post
 export const patchLikes = async (req, res) => {
   try {
-    const like = await Post.updateOne(
-      { _id: req.body.pid },
-      { $addToSet: { likedUsers: req.body.uid } }
-    )
-    res.status(201).json(like);
+    const postId = req.params.id;  // from URL
+    const userId = req.body.uid;   // user who liked it
+
+    // Add userId to likedUsers (no duplicates)
+    const updatedPost = await Post.findByIdAndUpdate(
+      postId,
+      { $addToSet: { likedUsers: userId } },
+      { new: true }  // return updated document
+    );
+
+    if (!updatedPost) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    res.status(200).json(updatedPost);
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to like post" });
