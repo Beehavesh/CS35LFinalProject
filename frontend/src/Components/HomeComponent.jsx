@@ -4,6 +4,18 @@ import '../Sass/HomeComponent.scss';
 import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
+const handleJobs = async () => {
+        const auth = getAuth();
+        const userId = auth.currentUser.uid;
+
+        const res = await fetch(
+        `https://cs35lfinalproject.onrender.com/api/posts/matching/${userId}`
+        );
+
+        const tags = await res.json();
+        console.log("User tags:", tags);
+    };
+
 export default function HomeComponent() {
     //image upload code is put here temporariliy - move later
     const [currentImage, setCurrentImage] = useState({})
@@ -37,6 +49,8 @@ export default function HomeComponent() {
             <GetPosts />
             <input type={"file"} onChange={getImage} />
             <button onClick={sendImage}>Upload</button>
+            //temporary - for testing purposes
+            <button onClick={handleJobs}>Test Job Matching</button>
         </div>
     );
 }
