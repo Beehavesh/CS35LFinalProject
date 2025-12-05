@@ -65,7 +65,8 @@ export const getPostsMatchingUserTags = async (req, res) => {
     const jobs = await Post.find({
       tags: { $in: userTags }
     });
-
+    console.log(jobs);
+    
     res.json(jobs);
 
   } catch (err) {
