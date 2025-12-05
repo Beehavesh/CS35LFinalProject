@@ -35,7 +35,7 @@ export default function HomeComponent() {
     };
     return (
         <div>
-            homepage
+            <GetJobPosts />
             <input type={"file"} onChange={getImage} />
             <button onClick={sendImage}>Upload</button>
         </div>
