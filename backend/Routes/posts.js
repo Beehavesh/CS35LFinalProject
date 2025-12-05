@@ -1,11 +1,11 @@
 import express from "express";
-import Post from "../models/Jobpost.js"; 
+import Jobpost from "../models/Jobpost.js"; 
 
 const router = express.Router();
 
 router.post("/post", async (req, res) => {
     try {
-        const { text, userId } = req.body;
+        const { text, userId, tags } = req.body;
 
         const post = await Jobpost.create({
             text,

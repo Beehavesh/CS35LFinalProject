@@ -52,7 +52,7 @@ export default function PostStatus() {
                 },
                 body: JSON.stringify({
                     text: postStatus,
-                    tags: jobTags, //this should be set upon submit
+                    tags: userJobTags, //this should be set upon submit
                 })
             });
             if (!response.ok) throw new Error("Failed to post");
