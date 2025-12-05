@@ -66,7 +66,6 @@ export default function PlaylistComponent() {
             >
                 <FormComponent form={form}/>
             </ModalComponent>
-            //temporary - remove later
             <GetUserPlaylists />
         </div>
     );

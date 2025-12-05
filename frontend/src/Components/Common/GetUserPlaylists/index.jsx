@@ -43,9 +43,31 @@ export default function GetUserPlaylists() {
 
     return (
         <div className="playlists-container">
-            {userPlaylists.map((post) => (
-                <div key={post._id} className="playlist-item">
-                    <p>{post.playlistTitle}</p>
+            {userPlaylists.map((playlist) => (
+                <div key={playlist._id} className="playlist-item">
+                    <h3>{playlist.playlistTitle}</h3>
+                    {playlist.tags && playlist.tags.length > 0 && (
+                        <div className="playlist-tags">
+                            <strong>Tags:</strong>
+                            <ul>
+                                {playlist.tags.map((tag, index) => (
+                                    <li key={index}>{tag}</li>
+                                ))}
+                        </ul>
+                    </div>
+                    )}
+                    {playlist.songs && playlist.songs.length > 0 && (
+                    <div className="playlist-songs">
+                        <strong>Songs:</strong>
+                        <ul>
+                            {playlist.songs.map((song, index) => (
+                                <li key={index}>
+                                    {song.title} — {song.artist}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    )}
                 </div>
             ))}
         </div>
