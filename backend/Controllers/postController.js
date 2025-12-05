@@ -51,8 +51,7 @@ export const getPostsMatchingUserTags = async (req, res) => {
     // 2. Flatten user genre tags into an array
     const userTags = [
       ...new Set(
-        playlists.flatMap(p => p.genreTags.map(t => t.toLowerCase()))
-      ),
+        playlists.flatMap(p => p.genreTags))
     ];
 
     console.log("User tags:", userTags);
