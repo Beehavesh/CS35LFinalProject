@@ -6,6 +6,8 @@ import cors from "cors";
 import Post from "./models/Post.js";
 import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
+import userRoutes from "./Routes/users.js";
+
 // import Like from "./models/Like.js";
 // import likeRoutes from "./Routes/likes.js";
 import postRoutes from "./Routes/posts.js";
@@ -20,10 +22,12 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/posts", postRoutes);
 //app.use("/api", likeRoutes);
-app.use("/api", playlistRoutes);
+app.use("/api/playlist", playlistRoutes);
+app.use("/api/users", userRoutes);
+
 
 // Render backend
-app.get("/", (res) => {
+app.get("/", (req, res) => {
   res.send("Backend running");
 });
 
@@ -44,6 +48,7 @@ app.get("/api/posts", verifyToken, async (req, res) => {
   res.json(posts);
 });
 
+/*
 app.post("/api/like", async (req, res) => {
     try {
         const { postID, likedUserIDs } = req.body;
@@ -59,11 +64,11 @@ app.post("/api/like", async (req, res) => {
         res.status(500).json({ error: "Failed to create likes" });
     }
 });
+*/
 
 //storing User info into mongo DB
 app.post("/api/auth", verifyToken, async (req, res) =>{
-  console.log("testing if we correctly hit the api auth route");
-
+  console.log("we hit api/auth");
   const uid = req.user.uid;
   const{ email, username, photoUrl } = req.body;
 
