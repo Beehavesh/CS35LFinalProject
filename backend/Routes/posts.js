@@ -1,5 +1,5 @@
 import express from "express";
-import Jobpost from "../models/Jobpost.js"; 
+import Post from "../models/Post.js"; 
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ router.post("/post", async (req, res) => {
     try {
         const { text, userId, tags } = req.body;
 
-        const post = await Jobpost.create({
+        const post = await Post.create({
             text,
             userId,
             tags,
