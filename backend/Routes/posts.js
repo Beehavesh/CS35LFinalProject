@@ -8,6 +8,6 @@ router.post("/", verifyToken, createPost);
 router.get("/", verifyToken, getAllPosts);
 router.get("/:userId", verifyToken, getUserPosts);
 router.get("/matching/:userId", getPostsMatchingUserTags);
-router.patch("/", verifyToken, patchLikes); 
+router.patch("/:id", verifyToken, patchLikes); 
 
 export default router;

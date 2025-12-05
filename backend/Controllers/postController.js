@@ -68,7 +68,7 @@ export const getPostsMatchingUserTags = async (req, res) => {
 };
 
 // Like a post
-export const patchLikes = async (req, res) => async (req, res) => {
+export const patchLikes = async (req, res) => {
   try {
     const like = await Post.updateOne(
       { _id: req.body.pid },
