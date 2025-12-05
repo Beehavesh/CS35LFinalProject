@@ -11,6 +11,7 @@ import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
 import Like from "./models/Like.js";
 import likeRoutes from "./Routes/likes.js";
+import playlistRoutes from "./Routes/playlist.js";
 
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
@@ -19,6 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api", likeRoutes);
+app.use("/api", playlistRoutes);
 
 // Initialize Firebase admin
 
