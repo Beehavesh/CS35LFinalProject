@@ -3,7 +3,7 @@ import './index.scss';
 import ModalComponent from '../Modal/index.jsx';
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
-import getPosts from '../GetAllPosts/index.jsx';
+import getPosts from '../Getters/GetAllPosts/index.jsx';
 
 const initialJobTags = [
     { id: 0, genre: 'Rock', selected: false},

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import GetJobPosts from './Common/GetJobPosts/index.jsx';
-import GetAllPosts from './Common/GetAllPosts/index.jsx';
+import GetJobPosts from './Common/Getters/GetJobPosts/index.jsx';
+import GetAllPosts from './Common/Getters/GetAllPosts/index.jsx';
 import '../Sass/HomeComponent.scss';
 import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';

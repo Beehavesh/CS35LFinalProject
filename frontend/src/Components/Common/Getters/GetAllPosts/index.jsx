@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./index.scss";
 import { getAuth } from "firebase/auth";
-import LikeButton from '../LikeButton/index.jsx';
+import LikeButton from '../../LikeButton/index.jsx';
 
 const getAllPosts = async (setAllPosts) => {
     try {
