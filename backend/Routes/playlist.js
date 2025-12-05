@@ -6,6 +6,7 @@ const router = express.Router();
 // Create a playlist
 router.post("/playlist", async (req, res) => {
   try {
+    console.log("Incoming playlist payload:", req.body);
     const { userId, playlistTitle, songs } = req.body;
 
     if (!songs || songs.length === 0) {
@@ -21,6 +22,7 @@ router.post("/playlist", async (req, res) => {
     res.status(201).json(playlist);
 
   } catch (err) {
+    console.error("PLAYLIST ERROR:", err);
     res.status(500).json({ error: err.message });
   }
 });
