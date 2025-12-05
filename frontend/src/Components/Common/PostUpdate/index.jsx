@@ -62,6 +62,7 @@ export default function PostStatus() {
 
             const data = await response.json();
             const newPostId = data._id; 
+            console.log(data);
 
             // Create likes for the post
             createLikes(token, String(newPostId));
