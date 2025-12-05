@@ -2,21 +2,27 @@
   display: block;
   justify-content: center;
   align-items: center;
-
   flex-direction: column;
   gap: 5px;
-  padding: 7px 10px;
+  padding: 0px 10px;
   margin-bottom: 0px;
-
   .like-button {
     cursor: pointer;
+    background-color: #a0a0a0;
+    border: 2px solid #707070;
     display: inline-flex;
     margin-top: 10px;
     justify-content: center;
     align-items: center;
-
+    border-radius: 5px;
+    h3 {
+      font-family: Inter, sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 14px;
+      margin: 5px 15px;
+    }
   }
-
   p {
     display: inline-flex;
     font-family: Inter, sans-serif;
