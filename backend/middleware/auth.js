@@ -1,13 +1,13 @@
 import admin from "firebase-admin";
 
+// Parse service account key for Firebase admin
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+
 // Initialize Firebase admin
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-
-// Parse service account key for Firebase admin
-const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 // Middleware to verify Firebase token
 
