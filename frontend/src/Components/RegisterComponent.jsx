@@ -46,7 +46,7 @@ export default function RegisterComponent() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(userData),                     
     });
    };
 
