@@ -10,12 +10,20 @@ import Like from "./models/Like.js";
 import likeRoutes from "./Routes/likes.js";
 import playlistRoutes from "./Routes/playlist.js";
 import { verifyToken } from "./middleware/auth.js";
+import { connectDB } from "./config/mongodb.js";
+
+connectDB();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api", likeRoutes);
 app.use("/api", playlistRoutes);
+
+// Render backend
+app.get("/", (res) => {
+  res.send("Backend running");
+});
 
 // Create a new post
 app.post("/api/posts", verifyToken, async (req, res) => {
