@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.post("/", verifyToken, createPost);
 router.get("/", verifyToken, getAllPosts);
-router.get("/:userId", verifyToken, getUserPosts);
 router.get("/matching/:userId", getPostsMatchingUserTags);
+router.get("/:userId", verifyToken, getUserPosts);
 router.patch("/:id", verifyToken, patchLikes); 
 router.get("/:pid/likes", verifyToken, getLikes);
 

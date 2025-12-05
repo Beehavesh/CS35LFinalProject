@@ -51,7 +51,7 @@ export default function HomeComponent() {
        
             <h1 className="heading1"> MOTIF. </h1>
             <h2> Jobs curated just for your unique music taste. </h2>
-            <GetJobPosts/>
+            <GetJobPosts />
             <input type={"file"} onChange={getImage} />
             <button onClick={sendImage}>Upload</button>
         </div>
