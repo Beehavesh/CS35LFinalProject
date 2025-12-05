@@ -12,6 +12,7 @@ router.post("/post", async (req, res) => {
             userId,
             tags,
             createdAt: new Date(),
+            likedUsers,
         });
 
         res.status(201).json(post);

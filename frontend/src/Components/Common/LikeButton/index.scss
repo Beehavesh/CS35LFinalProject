@@ -1,6 +1,7 @@
 .like-container {
-  display: inline-flex;
+  display: block;
   justify-content: center;
+  align-items: center;
 
   flex-direction: column;
   gap: 5px;
@@ -9,13 +10,19 @@
 
   .like-button {
     cursor: pointer;
+    display: inline-flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+
   }
 
   p {
+    display: inline-flex;
     font-family: Inter, sans-serif;
     font-weight: 400;
     color: rgba(58, 58, 58, 0.835);
     font-size: 14px;
-    margin-left: 5px;
+    margin-left: 10px;
   }
 }

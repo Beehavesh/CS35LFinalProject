@@ -21,8 +21,9 @@ const addLike = async (likedUsers, userID) => {
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        // add userID to likedUsers
-        // use push?
+        "op": "add",
+        "path": "/likedUsers/-",
+        "value": userID,
       })
     });
     if (!response.ok) throw new Error("Failed to like this post");
@@ -39,18 +40,15 @@ export default function LikeButton({ likedUsers, userID }) {
     addLike(likedUsers, userID);
   }
   
-  if (likedUsers == null) {
-    likesNumber = 0;
-  } else {
-    likesNumber = likedUsers.length;;
-  }
+  let likeNumber = 0;
+  if (likedUsers != null) likeNumber = likedUsers.length;
 
   return (
     <div className="like-container">
       <div className="like-button" onClick={handleLike}>
         <AiOutlineHeart size={25} />
       </div>
-      <p>{likesNumber}</p>
+      <p>{likeNumber}</p>
     </div>
   );
 }

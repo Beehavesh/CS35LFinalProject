@@ -6,8 +6,8 @@ import cors from "cors";
 import Post from "./models/Post.js";
 import Jobpost from "./models/Jobpost.js";
 import User from "./models/User.js";
-import Like from "./models/Like.js";
-import likeRoutes from "./Routes/likes.js";
+// import Like from "./models/Like.js";
+// import likeRoutes from "./Routes/likes.js";
 import playlistRoutes from "./Routes/playlist.js";
 import verifyToken from "./middleware/auth.js";
 import connectDB from "./config/mongodb.js";
@@ -90,49 +90,29 @@ app.post("/api/auth", verifyToken, async (req, res) =>{
     }
 });
 
-// Create likes for a post
-app.post("/api/likes", verifyToken, async (req, res) => {
-  const like = await Like.create({
-    postID: req.body.pid,
-    likedUserIDs: null,
-  });
-  res.json(like);
-});
-
-// Get likes for a post
-app.get("/api/likes", verifyToken, async (req, res) => {
-  const like = await Like.find({ postID: req.body.pid});
-  res.json(like);
-});
 
 // Like a post
-app.put("/api/likes", verifyToken, async (req, res) => {
-  console.log("Liking a post");
-
+app.patch("/api/posts", verifyToken, async (req, res) => {
+  console.log("does this code get executed?");
+  /*
   newLikeUserID = req.body.userID;
-  pID = req.body.postID;
-
   if (!newLikeUserID) return res.status(401).json({ error: "Invalid user ID while trying to like" });
-
   try {
     const updatedLikes = await Like.findOneAndUpdate(
-      { postID: pID }, // Filter
-      { $push: { likedUserIDs: newLikeUserID } }, // Update
-      { new: true } // Option: Return the updated document instead of the old one
+      { postID: pID },
+      { $push: { likedUserIDs: newLikeUserID } },
+      { new: true } 
     );
-
     if (!updatedLikes) {
       return res.status(404).json({ error: 'Posts not found while trying to like' });
     }
-
     res.json({likes: updatedLikes});
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+  */
 });
-
 
 app.listen(process.env.PORT || 5001, () => console.log("Server running"));
 
