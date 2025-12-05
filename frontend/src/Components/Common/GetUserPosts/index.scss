@@ -17,4 +17,31 @@
             color: #333;
         }
     }
+    .applicant-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.applicant-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.applicant-pfp {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.applicant-username {
+  font-weight: bold;
+}
+
+.applicant-bio {
+  font-size: 0.9rem;
+  color: #666;
+}
 }

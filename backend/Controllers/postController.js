@@ -1,5 +1,6 @@
 import Post from "../models/Post.js";
 import Playlist from "../models/Playlist.js";
+import User from "../models/User.js";
 
 // Create a new post
 export const createPost = async (req, res) => {
@@ -91,5 +92,27 @@ export const patchLikes = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to like post" });
+  }
+};
+
+//Get a list of who liked a post
+export const getLikes = async (req, res) => {
+  try {
+    const { pid } = req.params;
+
+    // 1. Get the post
+    const post = await Post.findById(pid);
+    if (!post) return res.status(404).json({ error: "Post not found" });
+
+    // 2. Get all users whose uid is in post.likes
+    const likes = await User.find(
+      { firebaseUID: { $in: post.likes } },  // match UIDs
+      "firebaseUID username bio"                 // return only these fields
+    );
+
+    res.json({ likes });
+  } catch (err) {
+    console.error("GET APPLICANTS ERROR:", err);
+    res.status(500).json({ error: "Failed to fetch applicants" });
   }
 };

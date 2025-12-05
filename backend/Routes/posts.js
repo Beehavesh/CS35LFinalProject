@@ -1,6 +1,6 @@
 import express from "express";
 import verifyToken from "../middleware/auth.js";
-import { createPost, getAllPosts, getUserPosts, getPostsMatchingUserTags, patchLikes } from "../Controllers/postController.js";
+import { createPost, getAllPosts, getUserPosts, getPostsMatchingUserTags, patchLikes, getLikes } from "../Controllers/postController.js";
 
 const router = express.Router();
 
@@ -9,5 +9,7 @@ router.get("/", verifyToken, getAllPosts);
 router.get("/:userId", verifyToken, getUserPosts);
 router.get("/matching/:userId", getPostsMatchingUserTags);
 router.patch("/:id", verifyToken, patchLikes); 
+router.get("/:pid/likes", verifyToken, getLikes);
+
 
 export default router;
