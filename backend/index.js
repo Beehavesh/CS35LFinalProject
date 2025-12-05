@@ -65,6 +65,12 @@ app.post("/api/jobposts", verifyToken, async (req, res) => {
   res.json(post);
 });
 
+// Get all posts
+app.get("/api/jobposts", verifyToken, async (req, res) => {
+  const posts = await Jobpost.find().sort({ timestamp: -1 });
+  res.json(posts);
+});
+
 app.post("/api/like", async (req, res) => {
     try {
         const { postID, likedUserIDs } = req.body;
@@ -79,12 +85,6 @@ app.post("/api/like", async (req, res) => {
         console.error(err);
         res.status(500).json({ error: "Failed to create likes" });
     }
-});
-
-// Get all posts
-app.get("/api/jobposts", verifyToken, async (req, res) => {
-  const posts = await Jobpost.find().sort({ timestamp: -1 });
-  res.json(posts);
 });
 
 //storing User info into mongo DB
