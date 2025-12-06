@@ -16,7 +16,9 @@ router.post("/auth", verifyToken, createUserAuth);
 router.post("/", createUserLegacy);
 router.put("/:uid", verifyToken, updateUser);
 router.get("/:uid", getUserByUID);
-
+router.get("/debug/test123", (req, res) => {
+  res.send("IF YOU SEE THIS, BACKEND IS UPDATED");
+});
 
 
 
