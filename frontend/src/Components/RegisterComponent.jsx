@@ -148,6 +148,7 @@ export default function RegisterComponent() {
                     <input onChange={(event) => {
                         setCredentials({ ...credentials, email: event.target.value });
                     }} 
+                    id = 'email'
                     className='common-input' 
                     type='email'
                     placeholder='Enter your email' 
@@ -156,6 +157,7 @@ export default function RegisterComponent() {
                     <input onChange={(event) => {
                         setCredentials({ ...credentials, password: event.target.value });
                     }} 
+                    id = 'password'
                     className='common-input' 
                     type='password'
                     placeholder='Enter your password' 

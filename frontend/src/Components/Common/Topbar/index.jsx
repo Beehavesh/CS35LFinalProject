@@ -20,8 +20,8 @@ export default function Topbar() {
             <div className="icons">
                 <FaHome size={40} className="icon" onClick={()=>goToRoute("/home")} />
                 <FaUser size={35} className="icon" onClick={()=>goToRoute("/profile")}/>
-                <FaItunesNote size={40} className="icon" onClick={()=>goToRoute("/playlist")} />
-                <FaBriefcase size={40} className="icon" onClick={()=>goToRoute("/job-posting")}/>
+                <FaItunesNote size={40} className="icon" onClick={()=>goToRoute("/playlist")} data-testid="playlist-icon" />
+                <FaBriefcase size={40} className="icon" onClick={()=>goToRoute("/job-posting")} data-testid="jobpost-icon"/>
                 <FaSearch size={40} className="icon" onClick={()=>goToRoute("/search")}/>
             </div>
 

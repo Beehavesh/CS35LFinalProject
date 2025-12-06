@@ -97,6 +97,7 @@ const toggleSelection = (id) => {
         <div className="post-status-container">
             <div className="post-status">
                 <button
+                    id="open-post-modal"
                     className="open-post-modal"
                     onClick={() => setModalOpen(true)}
                 >

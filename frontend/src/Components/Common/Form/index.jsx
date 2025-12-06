@@ -90,7 +90,7 @@ const FormComponent = ({ form }) => {
               ))}
 
               <Form.Item>
-                <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                <Button data-testid="addSongButton" type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                   Add Another Song
                 </Button>
               </Form.Item>

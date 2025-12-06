@@ -99,7 +99,7 @@ export default function LoginComponent() {
                     placeholder='Enter your password' 
                     />
                 </div>
-                    <button onClick={login} className='login-button'>
+                    <button onClick={login} className='login-button' id="login-button">
                         Log in
                 </button>
             </div>

@@ -22,5 +22,10 @@
     "install": "^0.13.0",
     "npm": "^11.6.4",
     "three": "^0.172.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.3.0",
+    "@playwright/test": "^1.57.0",
+    "playwright": "^1.57.0"
   }
 }

@@ -44,7 +44,7 @@ export default function GetUserPlaylists() {
     return (
         <div className="playlists-container">
             {userPlaylists.map((playlist) => (
-                <div key={playlist._id} className="playlist-item">
+                <div key={playlist._id} id="playlist-card" className="playlist-item">
                     <h3>{playlist.playlistTitle}</h3>
                     {playlist.genreTags && playlist.genreTags.length > 0 && (
                         <div className="playlist-tags">

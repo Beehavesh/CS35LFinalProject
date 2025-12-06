@@ -2,7 +2,7 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 const { expect } = require("@playwright/test");
 
 Given('I navigate to {string}', async function (path) {
-  await this.page.goto(`http://localhost:5173${path}`);
+  await this.page.goto(`https://cs35lfinalproject-1.onrender.com${path}`);
 });
 
 When('I fill {string} with {string}', async function (field, value) {
@@ -14,5 +14,5 @@ When('I click {string}', async function (label) {
 });
 
 Then('I should be redirected to {string}', async function (path) {
-  await expect(this.page).toHaveURL(`http://localhost:5173${path}`);
+  await expect(this.page).toHaveURL(`https://cs35lfinalproject-1.onrender.com${path}`);
 });
