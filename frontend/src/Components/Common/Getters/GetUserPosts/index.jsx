@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./index.scss";
+import "../gettersIndex.scss";
 import { getAuth } from "firebase/auth";
 
 // Fetch all posts created by current user
@@ -93,9 +93,9 @@ export default function GetUserPosts() {
   }, []);
 
   return (
-    <div className="user-posts-container">
+    <div className="job-posts-container">
       {userPosts.map((post) => (
-        <div key={post._id} className="all-post-item">
+        <div key={post._id} className="job-post-item">
                     <h1>{post.text}</h1>
                     <h2>{post.company}</h2>
                     <h3>{post.description}</h3>

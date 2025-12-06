@@ -1,19 +1,16 @@
-.posts-container {    
+.job-posts-container {    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-
-    .all-post-item {
+    .job-post-item {
         width: 80%;
-        background-color: black;
-        border: 1px solid #7800EB;;
+        background-color: #0E0E0E;
+        border: 1px solid #7800EB;
         border-radius: 5px;
         margin: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 1rem; 
-
         h1 {
             padding: 0.2rem; 
             padding-left: 0.5rem; 
@@ -25,6 +22,8 @@
             padding-left: 0.5rem;
         }
         p {
+
+            font-family: "Gudea";
             margin-left: 12px;
             font-size: 14px;
             color: #B0A3EB;
