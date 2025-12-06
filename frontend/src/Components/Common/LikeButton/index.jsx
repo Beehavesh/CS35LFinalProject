@@ -40,7 +40,7 @@ export default function LikeButton({ likedUsers, setLikedUsers, postID }) {
   return (
     <div className="like-container">
       <div className="like-button" onClick={handleLike}>
-        <h3>Apply</h3>
+        <div className="likeHeading">Apply</div>
       </div>
       <p>Number of Applications: {likedUsers?.length || 0}</p>
     </div>

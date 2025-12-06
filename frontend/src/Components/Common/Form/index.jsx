@@ -34,7 +34,7 @@ const FormComponent = ({ form }) => {
       >
         {/* Playlist Title */}
         <Form.Item
-        label={<span style={{ color: "white", fontWeight: "bold" }}>Playlist Title</span>}
+        label={<span style={{ fontFamily: 'Gudea', color: "white", fontWeight: "bold" }}>Playlist Title</span>}
           color='white'
           name="playlistTitle"
           rules={[{ required: true, message: "Please enter a playlist title" }]}
@@ -62,7 +62,7 @@ const FormComponent = ({ form }) => {
                   <Space orientation="vertical" style={{ width: "100%" }}>
                     <Form.Item
                       {...restField}
-                      label={<span style={{ color: "white", fontWeight: "bold" }}>Song Title</span>}
+                      label={<span style={{ fontFamily: 'Gudea', color: "white", fontWeight: "bold" }}>Song Title</span>}
                       name={[name, "title"]}
                       rules={[{ required: true, message: "Song title is required" }]}
                     >
@@ -71,22 +71,22 @@ const FormComponent = ({ form }) => {
 
                     <Form.Item
                       {...restField}
-                      label={<span style={{ color: "white", fontWeight: "bold" }}>Artist</span>}
+                      label={<span style={{ fontFamily: 'Gudea', color: "white", fontWeight: "bold" }}>Artist</span>}
                       name={[name, "artist"]}
                       rules={[{ required: true, message: "Artist is required" }]}
                     >
                       <Input />
                     </Form.Item>
 
-                    <Form.Item {...restField} label={<span style={{ color: "white"}}>Album</span>} name={[name, "album"]}>
+                    <Form.Item {...restField} label={<span style={{ fontFamily: 'Gudea', color: "white"}}>Album</span>} name={[name, "album"]}>
                       <Input />
                     </Form.Item>
 
-                    <Form.Item {...restField} label={<span style={{ color: "white"}}>Release Date</span>} name={[name, "releaseDate"]}>
+                    <Form.Item {...restField} label={<span style={{ fontFamily: 'Gudea', color: "white"}}>Release Date</span>} name={[name, "releaseDate"]}>
                       <Input />
                     </Form.Item>
 
-                    <Form.Item {...restField} label={<span style={{ color: "white"}}>Link</span>} name={[name, "link"]}>
+                    <Form.Item {...restField} label={<span style={{ fontFamily: 'Gudea', color: "white"}}>Link</span>} name={[name, "link"]}>
                       <Input />
                     </Form.Item>
 
