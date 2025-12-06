@@ -41,6 +41,7 @@ export default function HomeComponent() {
                            loading="eager"
                            auto-rotate
    //no poster for the homepage
+
                            tone-mapping="aces"
                            src="/motif3dreal.gltf"
                            environment-image="neutral"
@@ -52,8 +53,7 @@ export default function HomeComponent() {
             <h1 className="heading1"> MOTIF. </h1>
             <h2> Jobs curated just for your unique music taste. </h2>
             <GetJobPosts />
-            <input type={"file"} onChange={getImage} />
-            <button onClick={sendImage}>Upload</button>
+
         </div>
     );
 }

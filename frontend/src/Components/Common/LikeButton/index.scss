@@ -1,4 +1,4 @@
-.like-container {
+.like-container { // this is the entire "footer" of sorts from the bottom of a job posting
   font-family: "Gudea";
   display: block;
   justify-content: center;
@@ -12,7 +12,7 @@
     background-color: none;
     border: 2px solid #006BEB;
     display: inline-flex;
-    margin-top: 10px;
+    margin-top: 0.3rem; 
     justify-content: center;
     align-items: center;
     border-radius: 5px;
@@ -23,15 +23,17 @@
       color: #89C8EA;
 
     }
-    h3 {
+    .likeHeading{
       font-family: Gudea, sans-serif;
+      font-size: 1.5em; 
       font-weight: 600;
       color: #006BEB;
       font-size: 14px;
-      margin: 5px 15px;
+      padding-top: 0; 
+      padding: 0.6rem;
 
       &:hover{
-        color: #89C8EA;
+      color: #89C8EA;
       }
     }
 

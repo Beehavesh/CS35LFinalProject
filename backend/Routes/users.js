@@ -3,20 +3,23 @@ import verifyToken from "../middleware/auth.js";
 import{
     createUserAuth,
     createUserLegacy,
-    getUserByUID
+    getUserByUID,
+    updateUser
 } from "../Controllers/userController.js";
-
-console.log("i want to die! also this is testing users");
-
 
 const router = express.Router();
 router.get("/test", (req,res)=>{
     console.log("yo it his the users/test yo");
-    res.send("da user routes work yuhhhhh");
+    res.send("this the new version");
 });
 router.post("/auth", verifyToken, createUserAuth);
 router.post("/", createUserLegacy);
+router.put("/:uid", verifyToken, updateUser);
 router.get("/:uid", getUserByUID);
+router.get("/debug/test123", (req, res) => {
+  res.send("IF YOU SEE THIS, BACKEND IS UPDATED");
+});
+
 
 
 export default router;

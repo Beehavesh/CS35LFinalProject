@@ -60,7 +60,8 @@ const toggleSelection = (id) => {
     const sendStatus = async () => { 
         const auth = getAuth(); 
         const token = await auth.currentUser.getIdToken();
-                if (!jobRole.trim()) return;
+                if (!jobRole.trim() || !companyName.trim() || !jobDescription.trim()) return;
+
 
         try {
             const response = await fetch("https://cs35lfinalproject.onrender.com/api/posts", {
@@ -139,7 +140,7 @@ const toggleSelection = (id) => {
 
                 <h4>Music Taste Tags</h4>
 
-               <div style={{ display: 'flex', gap: '8px' }}>
+               <div style={{ display: 'inline-flex', gap: '8px' }}>
                 {jobTags.map(jobTag => (
                     <div key={jobTag.id}>
                         <button 

@@ -47,13 +47,11 @@ export default function GetUserPlaylists() {
                 <div key={playlist._id} id="playlist-card" className="playlist-item">
                     <h3>{playlist.playlistTitle}</h3>
                     {playlist.genreTags && playlist.genreTags.length > 0 && (
-                        <div className="playlist-tags">
+                        <div className="playlist-tags" style={{display: 'inline-flex'}}>
                             <strong>Tags:</strong>
-                            <ul>
                                 {playlist.genreTags.map((tag, index) => (
-                                    <li key={index}>{tag}</li>
+                                    <p className="wrapped" key={index}>{tag}</p>
                                 ))}
-                        </ul>
                     </div>
                     )}
                     {playlist.songs && playlist.songs.length > 0 && (
