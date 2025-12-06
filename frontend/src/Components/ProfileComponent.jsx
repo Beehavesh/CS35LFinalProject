@@ -5,20 +5,31 @@ import Topbar from '../Components/Common/Topbar/index.jsx';
 import motifv2 from '../assets/motif-v2.svg';
 import motifChrome from '../assets/motif-chrome.svg';
 import React, { useState, useEffect } from "react";
+import { useRowStyle } from "antd/es/grid/style/index.js";
 
 
 
 export default function ProfileComponent() {
     const [userData, saveUserDataDB] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     const auth = getAuth();
     const firebaseUID = auth.currentUser?.uid;
     useEffect(()=>{
-        if(!firebaseUID)
-            return;
-        fetch(`https://cs35lfinalproject.onrender.com/api/users/${firebaseUID}`)
-        .then(res => res.json())
-        .then(data => saveUserDataDB(data))
-        .catch(err => console.error(err));
+        if (!firebaseUID) return;
+        async function fetchUser() {
+            try {const res = await fetch(`https://cs35lfinalproject.onrender.com/api/users/${firebaseUID}`);
+                if (!res.ok) throw new Error("Failed to fetch user this is pfpcomponent");
+                const data = await res.json();
+                saveUserDataDB(data);
+            } catch (err) {
+                console.error("Profile fetch error:", err);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchUser();
     }, [firebaseUID]);
 
     return (
@@ -40,7 +51,7 @@ export default function ProfileComponent() {
                         </button>
                         </div>
                     </div>)}
-            Welcome {userData?.username || "User"}!
+            Welcome {userData?.username || "Pooper"}!
             <div className="playlist-section">
                 <h2>Your Playlists</h2>
                 <p> No playlists added yet. </p>

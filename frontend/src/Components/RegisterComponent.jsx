@@ -14,33 +14,12 @@ export default function RegisterComponent() {
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({});
 
-    //linking to the backend 
-    //uncomment if this doesnt work
-    /*
-    const saveUserDataDB = async() =>{
-        try{
-            const auth = getAuth();
-            const token = await auth.currentUser.getIdToken();
-            await fetch("https://cs35lfinalproject.onrender.com/api/auth",{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: JSON.stringify({}),
-            });
-        }
-        catch(err){
-            console.log("error saving user bluh", err)
-        }
-    };
-    */
    const saveUserDataDB = async(userData) =>{
     const auth = getAuth();
     const userId = auth.currentUser.uid; //this is the firebase uid
     const token = await auth.currentUser.getIdToken();
 
-    await fetch("https://cs35lfinalproject.onrender.com/api/auth",{
+    await fetch("https://cs35lfinalproject.onrender.com/api/users/auth",{
         method: "POST",
         headers:{
             "Content-Type": "application/json",

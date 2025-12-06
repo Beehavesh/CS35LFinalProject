@@ -4,7 +4,7 @@ import { Form } from 'antd';
 import { getAuth } from 'firebase/auth';
 import FormComponent from './Common/Form';
 import ModalComponent from './Common/Modal';
-import GetUserPlaylists from './Common/GetUserPlaylists';
+import GetUserPlaylists from './Common/Getters/GetUserPlaylists';
 
 export default function PlaylistComponent() {
     const [modalOpen, setModalOpen] = useState(false);

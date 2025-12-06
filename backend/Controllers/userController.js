@@ -25,12 +25,16 @@ export const createUserAuth = async (req, res) => {
 export const createUserLegacy = async (req, res) => {
   const { userId, email, username, photoUrl } = req.body;
 
+   if (!userId || !email) {
+    return res.status(400).json({ error: "Missing required fields." });
+  }
+
   try {
     let user = await User.findOne({ firebaseUID: userId });
 
     if (!user) {
       user = await User.create({
-        firebaseUID,
+        firebaseUID: userId,
         email,
         username,
         photoUrl,
@@ -40,6 +44,7 @@ export const createUserLegacy = async (req, res) => {
     res.json(user);
 
   } catch (err) {
+    console.error("legacy error bro", err);
     res.status(500).json({ error: "Error creating user" });
   }
 };
@@ -56,6 +61,7 @@ export const getUserByUID = async (req, res) => {
     res.json(user);
 
   } catch (err) {
+    console.error("get user error: bruh" , err);
     res.status(500).json({ error: "Server error" });
   }
 };

@@ -6,9 +6,6 @@ import{
     getUserByUID
 } from "../Controllers/userController.js";
 
-console.log("i want to die! also this is testing users");
-
-
 const router = express.Router();
 router.get("/test", (req,res)=>{
     console.log("yo it his the users/test yo");
