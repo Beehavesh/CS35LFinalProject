@@ -1,3 +1,4 @@
+
 import User from "../models/User.js";
 
 // /api/users/auth
@@ -63,5 +64,23 @@ export const getUserByUID = async (req, res) => {
   } catch (err) {
     console.error("get user error: bruh" , err);
     res.status(500).json({ error: "Server error" });
+  }
+};
+
+export const updateUser = async(req, res) =>{
+  try{
+    const uid = req.params.uid;
+    const updates = req.body;
+
+    const user = await User.findOneAndUpdate({ firebaseUID: uid},
+      updates,
+      {new: true}
+    );
+    if(!user) return res.status(404).json({ error: "User not found"});
+    res.json(user);
+  }
+  catch (err){
+    console.error("UPDATE USER ERROR:", err);
+    res.status(500).json({error: "server error updating user"});
   }
 };
