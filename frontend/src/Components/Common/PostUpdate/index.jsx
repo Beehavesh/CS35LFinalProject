@@ -138,7 +138,7 @@ const toggleSelection = (id) => {
 
                 <h4>Music Taste Tags</h4>
 
-               <div style={{ display: 'flex', gap: '8px' }}>
+               <div style={{ display: 'inline-flex', gap: '8px' }}>
                 {jobTags.map(jobTag => (
                     <div key={jobTag.id}>
                         <button 

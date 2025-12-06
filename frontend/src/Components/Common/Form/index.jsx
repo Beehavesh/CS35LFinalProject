@@ -16,7 +16,16 @@ const FormComponent = ({ form }) => {
   }, [selectedGenres, form]);
 
   return (
-    <Card title="Create New Playlist" style={{ maxWidth: 800, margin: "auto" }}>
+    <Card title="Create New Playlist" 
+      styles={{
+        title: { color: 'white', backgroundColor: '#0E0E0E', fontFamily: 'Gudea', fontSize: 30},
+        content: { color: 'white', fontFamily: 'serif', backgroundColor: '#0E0E0E', padding: 24},
+        container: { color: 'black', backgroundColor: '#0E0E0E', borderRadius: 30, borderColor: 'purple'},
+        header: { backgroundColor: '#0E0E0E', color: 'black', colorIcon: 'white' },
+        body: { backgroundColor: '#0E0E0E', color: 'black', fontSize: 16 },
+        footer: { display: 'flex', justifyContent: 'center' },
+        
+  }}>
       <Form
         form={form}
         name="playlistForm"
@@ -25,7 +34,8 @@ const FormComponent = ({ form }) => {
       >
         {/* Playlist Title */}
         <Form.Item
-          label="Playlist Title"
+        label={<span style={{ color: "white", fontWeight: "bold" }}>Playlist Title</span>}
+          color='white'
           name="playlistTitle"
           rules={[{ required: true, message: "Please enter a playlist title" }]}
         >
@@ -48,11 +58,11 @@ const FormComponent = ({ form }) => {
           {(fields, { add, remove }) => (
             <>
               {fields.map(({ key, name, ...restField }) => (
-                <Card key={key} style={{ marginBottom: 16, background: "#fafafa" }}>
+                <Card key={key} style={{ marginBottom: 16, background: "#0E0E0E" }}>
                   <Space orientation="vertical" style={{ width: "100%" }}>
                     <Form.Item
                       {...restField}
-                      label="Song Title"
+                      label={<span style={{ color: "white", fontWeight: "bold" }}>Song Title</span>}
                       name={[name, "title"]}
                       rules={[{ required: true, message: "Song title is required" }]}
                     >
@@ -61,22 +71,22 @@ const FormComponent = ({ form }) => {
 
                     <Form.Item
                       {...restField}
-                      label="Artist"
+                      label={<span style={{ color: "white", fontWeight: "bold" }}>Artist</span>}
                       name={[name, "artist"]}
                       rules={[{ required: true, message: "Artist is required" }]}
                     >
                       <Input />
                     </Form.Item>
 
-                    <Form.Item {...restField} label="Album (optional)" name={[name, "album"]}>
+                    <Form.Item {...restField} label={<span style={{ color: "white"}}>Album</span>} name={[name, "album"]}>
                       <Input />
                     </Form.Item>
 
-                    <Form.Item {...restField} label="Release Date (optional)" name={[name, "releaseDate"]}>
+                    <Form.Item {...restField} label={<span style={{ color: "white"}}>Release Date</span>} name={[name, "releaseDate"]}>
                       <Input />
                     </Form.Item>
 
-                    <Form.Item {...restField} label="Link (optional)" name={[name, "link"]}>
+                    <Form.Item {...restField} label={<span style={{ color: "white"}}>Link</span>} name={[name, "link"]}>
                       <Input />
                     </Form.Item>
 
@@ -90,7 +100,7 @@ const FormComponent = ({ form }) => {
               ))}
 
               <Form.Item>
-                <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                <Button style={{color: 'white', backgroundColor: 'black'}} type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                   Add Another Song
                 </Button>
               </Form.Item>
@@ -100,45 +110,42 @@ const FormComponent = ({ form }) => {
 
         {/* ======= MOVE TAG UI OUTSIDE Form.List ======= */}
 
-        <Form.Item label="Playlist Genres">
-          <div style={{ marginBottom: 8 }}>
-            <strong>Available Tags:</strong>
+        <Form.Item label="Playlist Genres" style={{color: 'white'}}>
+          <div style={{ fontFamily: 'Gudea', marginBottom: 8 }}>
+            <strong style={{color: 'white'}}>Available Tags:</strong>
           </div>
-
-          <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+            <div style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '8px' }}>
             {availableGenreTags.map((genre) => (
-              <li key={genre} style={{ marginBottom: 6 }}>
-                {genre}{" "}
+              <div key={genre} style={{ color: 'white', marginBottom: 6 }}>
                 {!selectedGenres.includes(genre) && (
-                  <Button
+                  <button
                     size="small"
                     onClick={() => setSelectedGenres((prev) => [...prev, genre])}
                   >
-                    Add
-                  </Button>
+                    {genre}
+                  </button>
                 )}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
 
-          <div style={{ marginTop: 12, marginBottom: 8 }}>
+          <div style={{ color: 'white', fontFamily: 'Gudea', marginTop: 12, marginBottom: 8 }}>
             <strong>Selected Tags:</strong>
           </div>
 
-          <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-            {selectedGenres.length === 0 && <p>No genres selected yet.</p>}
+          <ul style={{ fontFamily: 'Gudea', listStyle: "none", paddingLeft: 0 }}>
+            {selectedGenres.length === 0 && <p style={{color: 'white'}}>No genres selected yet.</p>}
             {selectedGenres.map((genre) => (
-              <li key={genre} style={{ marginBottom: 6 }}>
+              <li key={genre} style={{ color: 'white', marginBottom: 6 }}>
                 {genre}{" "}
-                <Button
+                <MinusCircleOutlined
                   danger
-                  size="small"
+                  size="large"
                   onClick={() =>
                     setSelectedGenres((prev) => prev.filter((g) => g !== genre))
                   }
                 >
-                  Remove
-                </Button>
+                </MinusCircleOutlined>
               </li>
             ))}
           </ul>
