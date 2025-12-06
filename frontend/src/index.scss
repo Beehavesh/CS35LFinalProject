@@ -1,5 +1,30 @@
 @import url("./Components/Common/Common.scss");
 
+.Toastify__toast--success {
+  border: 1px solid #3A9EA5 !important;
+  border-radius: 10px !important;
+  background: #000000 !important;
+}
+
+.Toastify__toast--warning {
+  border: 1px solid #3A9EA5 !important;
+  border-radius: 10px !important;
+  background: #000000 !important;
+}
+
+.Toastify__toast--error {
+  border: 1px solid #3A9EA5 !important;
+  border-radius: 10px !important;
+  background: #000000 !important;
+}
+
+.Toastify__toast--info {
+  border: 1px solid #3A9EA5 !important;
+  border-radius: 10px !important;
+  background: #000000 !important;
+}
+
+
 :root {
   font-family: gudea;
   line-height: 1.5;
