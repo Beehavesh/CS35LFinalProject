@@ -60,7 +60,8 @@ const toggleSelection = (id) => {
     const sendStatus = async () => { 
         const auth = getAuth(); 
         const token = await auth.currentUser.getIdToken();
-                if (!jobRole.trim()) return;
+                if (!jobRole.trim() || !companyName.trim() || !jobDescription.trim()) return;
+
 
         try {
             const response = await fetch("https://cs35lfinalproject.onrender.com/api/posts", {
