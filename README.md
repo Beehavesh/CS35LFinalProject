@@ -20,6 +20,9 @@ The database is live - it's been published using render: https://cs35lfinalproje
 Tests are done using cucumber and playwright.
 To run cucumber tests: npx cucumber-js 
 
+Here are our diagrams:
+![IMG_5515](https://github.com/user-attachments/assets/25adc3e0-bc5d-4721-842b-9c5b100ddc18)
+
 Here are our dependencies: 
 
 ```
