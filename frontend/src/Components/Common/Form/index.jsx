@@ -100,11 +100,7 @@ const FormComponent = ({ form }) => {
               ))}
 
               <Form.Item>
-<<<<<<< HEAD
-                <Button data-testid="addSongButton" type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-=======
                 <Button style={{color: 'white', backgroundColor: 'black'}} type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
->>>>>>> 7d48536c73049944585e8257fa07d741aa76cc60
                   Add Another Song
                 </Button>
               </Form.Item>
@@ -165,3 +161,4 @@ const FormComponent = ({ form }) => {
 };
 
 export default FormComponent;
+ // test mod
